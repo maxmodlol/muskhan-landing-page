@@ -1,25 +1,37 @@
 import Image from "next/image"
 import Link from "next/link"
+import { ChevronDown } from "lucide-react"
 import { SectionContainer } from "@/components/landing/SectionContainer"
 import { cn } from "@/lib/utils"
 
-function OlivePanel({ className }: { className?: string }) {
+/** Olive beside title: no frame — white areas blend into the hero via multiply. */
+function OliveBesideTitle({
+  className,
+  objectPosition = "object-[center_24%]",
+}: {
+  className?: string
+  objectPosition?: string
+}) {
   return (
     <div
       className={cn(
-        "hidden h-36 w-10 shrink-0 overflow-hidden rounded-md bg-slate-200/90 shadow-sm sm:block md:h-44 md:w-12 lg:h-52 lg:w-14",
+        "pointer-events-none hidden shrink-0 select-none sm:block",
         className
       )}
       aria-hidden
     >
-      <svg
-        viewBox="0 0 40 200"
-        className="h-full w-full text-olive"
-        fill="currentColor"
-      >
-        <path d="M20 8c-2 18-8 32-8 52 0 14 4 26 8 38 4-12 8-24 8-38 0-20-6-34-8-52zM12 95c-4 8-6 18-6 28 0 22 8 40 14 52 2-16-2-34-8-80zM28 95c6 46 10 64 8 80 6-12 14-30 14-52 0-10-2-20-6-28z" />
-        <ellipse cx="20" cy="168" rx="10" ry="24" opacity="0.35" />
-      </svg>
+      <div className="relative h-[4.5rem] w-[3.4rem] md:h-[5rem] md:w-[3.75rem]">
+        <Image
+          src="/olive.jpg"
+          alt=""
+          fill
+          sizes="80px"
+          className={cn(
+            "object-cover mix-blend-multiply contrast-[1.05]",
+            objectPosition
+          )}
+        />
+      </div>
     </div>
   )
 }
@@ -28,60 +40,80 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] min-h-[min(100dvh,900px)] flex-col justify-center overflow-hidden py-16 sm:py-20 md:py-24"
+      className="relative isolate flex min-h-[100svh] min-h-[min(100dvh,900px)] flex-col overflow-hidden"
     >
       <Image
-        src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?auto=format&fit=crop&w=2400&q=80"
-        alt="إطلالة على المدينة القديمة والقبة الصخرية"
+        src="/hero-olive.jpg"
+        alt="خلفية زيتون ومهرجان المسخن"
         fill
         priority
         sizes="100vw"
         className="object-cover object-center"
       />
       <div
-        className="absolute inset-0 bg-linear-to-b from-olive/75 via-olive/45 to-cream"
+        className="absolute inset-0 bg-linear-to-b from-cream/42 via-olive/5 to-earth/10"
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-linear-to-t from-cream via-transparent to-transparent opacity-95"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_88%_50%_at_50%_0%,rgba(245,236,214,0.55)_0%,transparent_52%)]"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_55%_40%_at_85%_15%,rgba(184,148,92,0.08)_0%,transparent_100%)]"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-linear-to-t from-parchment/78 via-parchment/14 to-transparent"
         aria-hidden
       />
 
-      <SectionContainer className="relative z-10 flex flex-col items-center text-center">
-        <div className="mb-6 h-px w-24 bg-gold/90 sm:mb-8 sm:w-32 md:w-40" />
+      <SectionContainer className="relative z-10 flex min-h-[100svh] min-h-[min(100dvh,900px)] flex-1 flex-col px-5 pb-8 pt-16 sm:px-6 sm:pb-10 sm:pt-20 md:pt-24 lg:pt-28">
+        <div className="flex flex-1 flex-col items-center justify-center gap-8 sm:gap-10 md:gap-12 lg:gap-14">
+          <div className="flex w-full max-w-3xl flex-col items-center sm:max-w-4xl md:max-w-5xl">
+            <div className="mb-5 flex items-center justify-center gap-2 sm:mb-6 md:mb-7">
+              <span className="h-px w-14 bg-gradient-to-l from-transparent to-earth/35 sm:w-20" />
+              <span className="size-2 shrink-0 rounded-full bg-gold shadow-[0_0_0_2px_rgba(250,247,239,0.5)]" />
+              <span className="h-px w-14 bg-gradient-to-r from-transparent to-earth/35 sm:w-20" />
+            </div>
 
-        <div className="flex w-full max-w-4xl flex-col items-center gap-6 sm:gap-8 md:flex-row md:items-center md:justify-center md:gap-6 lg:gap-10">
-          <OlivePanel className="order-2 md:order-1" />
-          <div className="order-1 flex max-w-xl flex-col items-center gap-4 px-1 sm:gap-5 md:order-2">
-            <span className="rounded-full bg-gold px-5 py-2 text-sm font-bold text-white shadow-md sm:text-base md:px-6 md:py-2.5">
+            <div className="rounded-full border border-gold/35 bg-cream/92 px-6 py-2.5 text-sm font-bold text-earth shadow-md ring-1 ring-gold/20 backdrop-blur-sm sm:px-7 sm:text-base md:text-lg">
               عين القدس
-            </span>
-            <h1 className="font-heading text-3xl leading-tight font-extrabold text-[#4a4a29] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3.25rem] xl:leading-[1.15]">
-              <span className="block">مهرجان المسخن المقدسي</span>
-              <span className="mt-2 block sm:mt-3">– عين القدس</span>
-            </h1>
-            <p className="max-w-md text-base leading-relaxed text-[#4a4a29] sm:text-lg md:text-xl">
+            </div>
+
+            <div className="mt-7 flex w-full max-w-4xl flex-col items-center gap-4 sm:mt-8 sm:flex-row sm:justify-center sm:gap-5 md:mt-10 md:gap-6">
+              <OliveBesideTitle />
+              <h1 className="font-heading max-w-[20ch] text-[1.85rem] font-extrabold leading-[1.15] text-earth [text-shadow:0_1px_0_rgba(255,253,248,0.92),0_0_20px_rgba(235,227,214,0.55)] sm:max-w-[24ch] sm:text-[2.25rem] sm:leading-[1.12] md:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
+                مهرجان المسخن المقدسي
+              </h1>
+              <OliveBesideTitle objectPosition="object-[center_28%]" />
+            </div>
+
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-earth/88 sm:mt-6 sm:max-w-xl sm:text-lg md:mt-8 md:text-xl md:leading-relaxed">
               حكاية خبزة من طابون عين القدس
             </p>
+
             <Link
               href="#booking"
-              className="mt-2 inline-flex min-h-12 items-center justify-center rounded-full bg-linear-to-l from-gold to-earth px-8 py-3 text-base font-bold text-white shadow-lg transition hover:scale-[1.02] hover:brightness-110 focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-cream/80 focus-visible:outline-none active:scale-[0.99] sm:min-h-14 sm:px-10 sm:text-lg"
+              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-linear-to-l from-earth via-olive to-olive-deep px-10 py-3.5 text-base font-bold text-cream shadow-[0_12px_32px_-10px_rgba(63,42,26,0.45)] ring-1 ring-gold/30 transition hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream/90 sm:mt-8 sm:min-h-[3.35rem] sm:px-12 sm:text-lg md:mt-10"
             >
               احجز تجربتك الآن
             </Link>
           </div>
-          <OlivePanel className="order-3" />
         </div>
-
-        <div className="mt-10 h-px w-24 bg-gold/90 sm:mt-14 sm:w-32 md:w-40" />
 
         <a
           href="#loyalty"
-          className="mt-8 flex flex-col items-center gap-2 text-earth/70 transition hover:text-earth"
+          className="group mx-auto mt-6 flex flex-col items-center gap-3 rounded-2xl px-5 py-2 transition sm:mt-8 md:mt-10 md:flex-row md:gap-4 md:px-8 md:py-3 md:hover:bg-cream/25"
           aria-label="انتقل للأسفل"
         >
-          <span className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-earth/40 pt-1.5">
-            <span className="size-1.5 animate-bounce rounded-full bg-gold" />
+          <span className="text-center text-base font-bold tracking-wide text-earth md:text-lg">
+            اكتشف المزيد
+          </span>
+          <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-gold/55 bg-cream/90 text-earth shadow-[0_4px_16px_-4px_rgba(63,42,26,0.2)] transition group-hover:border-gold group-hover:bg-cream group-hover:text-gold md:size-12">
+            <ChevronDown
+              className="size-6 stroke-[2.5] transition group-hover:translate-y-0.5 md:size-7"
+              aria-hidden
+            />
           </span>
         </a>
       </SectionContainer>

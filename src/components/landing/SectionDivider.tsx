@@ -9,9 +9,9 @@ export function SectionDivider({ className }: { className?: string }) {
       )}
       aria-hidden
     >
-      <span className="h-px w-10 bg-gold/80 sm:w-14 md:w-20" />
-      <span className="size-1.5 rounded-full bg-gold" />
-      <span className="h-px w-10 bg-gold/80 sm:w-14 md:w-20" />
+      <span className="h-px w-10 bg-earth/30 sm:w-14 md:w-20" />
+      <span className="size-1.5 rounded-full bg-olive" />
+      <span className="h-px w-10 bg-earth/30 sm:w-14 md:w-20" />
     </div>
   )
 }

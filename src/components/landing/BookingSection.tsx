@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Upload } from "lucide-react"
+import { MapPin, Phone, Upload } from "lucide-react"
 import { SectionContainer } from "@/components/landing/SectionContainer"
 import { SectionDivider } from "@/components/landing/SectionDivider"
 import { Button } from "@/components/ui/button"
@@ -39,21 +39,21 @@ export function BookingSection() {
   return (
     <section
       id="booking"
-      className="scroll-mt-20 bg-[linear-gradient(#f5f5dc_0,#f5f5dc_100%),repeating-linear-gradient(0deg,transparent,transparent_11px,rgba(107,66,38,0.06)_11px,rgba(107,66,38,0.06)_12px)] py-16 sm:py-20 md:py-24"
+      className="scroll-mt-20 bg-[linear-gradient(var(--color-parchment),var(--color-parchment)),repeating-linear-gradient(0deg,transparent,transparent_11px,rgba(63,42,26,0.045)_11px,rgba(63,42,26,0.045)_12px)] py-12 sm:py-16 md:py-20"
     >
       <SectionContainer>
         <SectionDivider />
-        <header className="mx-auto mt-4 max-w-2xl text-center sm:mt-6">
-          <h2 className="font-heading text-2xl font-extrabold text-olive sm:text-3xl md:text-4xl">
+        <header className="mx-auto mt-3 max-w-2xl text-center sm:mt-5">
+          <h2 className="font-heading text-2xl font-extrabold leading-tight text-olive sm:text-3xl md:text-[2rem]">
             احجز الآن
           </h2>
-          <p className="mt-3 text-sm text-earth/90 sm:text-base md:text-lg">
+          <p className="mt-2.5 text-sm text-earth/90 sm:text-base md:text-lg">
             انضم إلينا في رحلة الطعم الأصيل
           </p>
         </header>
 
-        <div className="mx-auto mt-10 max-w-lg animate-in fade-in slide-in-from-bottom-3 duration-700 md:mt-14 md:max-w-xl">
-          <div className="overflow-hidden rounded-3xl border-2 border-gold/50 bg-parchment shadow-xl">
+        <div className="mx-auto mt-8 max-w-lg animate-in fade-in slide-in-from-bottom-3 duration-700 md:mt-12 md:max-w-xl">
+          <div className="overflow-hidden rounded-3xl border-2 border-earth/25 bg-parchment shadow-xl">
             <div className="bg-linear-to-l from-earth to-olive px-4 py-4 text-center sm:px-6 sm:py-5">
               <p className="font-heading text-lg font-bold text-white sm:text-xl">
                 نموذج الحجز
@@ -62,11 +62,11 @@ export function BookingSection() {
 
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col gap-5 px-4 py-6 sm:gap-6 sm:px-6 sm:py-8"
+              className="flex flex-col gap-4.5 px-4 py-6 sm:gap-5 sm:px-6 sm:py-8"
             >
               {submitted ? (
                 <p
-                  className="rounded-xl border border-gold/40 bg-cream px-4 py-6 text-center text-base font-medium text-olive"
+                  className="rounded-xl border border-earth/20 bg-cream px-4 py-6 text-center text-base font-medium text-olive"
                   role="status"
                 >
                   تم استلام طلبك. سنتواصل معك قريبًا لتأكيد الحجز.
@@ -168,10 +168,10 @@ export function BookingSection() {
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
                   className={cn(
-                    "flex min-h-[140px] w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-gold bg-cream/80 px-4 py-6 text-center transition hover:border-earth hover:bg-cream focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none sm:min-h-[160px]"
+                    "flex min-h-[132px] w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-earth/30 bg-cream/80 px-4 py-6 text-center transition hover:border-olive/50 hover:bg-cream focus-visible:ring-2 focus-visible:ring-olive focus-visible:outline-none sm:min-h-[150px]"
                   )}
                 >
-                  <span className="flex size-12 items-center justify-center rounded-full bg-gold text-white shadow-md">
+                  <span className="flex size-12 items-center justify-center rounded-full bg-earth text-cream shadow-md">
                     <Upload className="size-6" aria-hidden />
                   </span>
                   <span className="text-sm font-semibold text-earth sm:text-base">
@@ -191,23 +191,54 @@ export function BookingSection() {
               <Button
                 type="submit"
                 disabled={submitted}
-                className="h-12 w-full rounded-full border-0 bg-linear-to-l from-earth to-olive text-base font-bold text-white shadow-md transition hover:brightness-105 disabled:opacity-60 sm:h-14 sm:text-lg"
+                className="h-12 w-full rounded-full border-0 bg-linear-to-l from-earth to-olive text-base font-bold text-white shadow-md transition hover:brightness-105 disabled:opacity-60 sm:h-13 sm:text-lg"
               >
                 تأكيد الحجز
               </Button>
             </form>
           </div>
 
-          <div className="mt-8 rounded-2xl bg-olive/15 px-4 py-5 text-center text-earth ring-1 ring-olive/20 sm:mt-10 sm:px-6 sm:py-6">
-            <p className="text-sm font-semibold text-olive sm:text-base">
-              للاستفسارات والمحجوزات
-            </p>
-            <p className="mt-2 text-base font-medium sm:text-lg" dir="ltr">
-              050-XXXX-XXX
-            </p>
-            <p className="mt-2 text-sm text-earth/90 sm:text-base">
-              عين القدس، المدينة القديمة
-            </p>
+          <div className="mt-7 overflow-hidden rounded-2xl border border-gold/35 bg-linear-to-b from-cream via-parchment to-cream/95 shadow-[0_12px_40px_-16px_rgba(63,42,26,0.18)] ring-1 ring-earth/8 sm:mt-9">
+            <div
+              className="h-1 w-full bg-linear-to-l from-transparent via-gold/70 to-transparent"
+              aria-hidden
+            />
+            <div className="px-5 py-6 text-center sm:px-8 sm:py-8">
+              <div className="mx-auto flex max-w-sm flex-col items-center gap-1">
+                <span className="flex items-center justify-center gap-2 text-earth">
+                  <span className="flex size-9 items-center justify-center rounded-full bg-olive/12 text-olive ring-1 ring-gold/25 sm:size-10">
+                    <Phone className="size-4 sm:size-[1.125rem]" aria-hidden strokeWidth={2.25} />
+                  </span>
+                </span>
+                <p className="mt-2 font-heading text-base font-bold text-earth sm:text-lg">
+                  للاستفسارات والمحجوزات
+                </p>
+              </div>
+
+              <a
+                href="tel:+972501234567"
+                className="mt-5 inline-flex items-center justify-center rounded-full border border-gold/40 bg-linear-to-b from-cream to-parchment px-6 py-2.5 text-lg font-bold tracking-wide text-earth shadow-sm ring-1 ring-gold/20 transition hover:border-gold/60 hover:bg-cream hover:text-olive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 sm:mt-6 sm:px-8 sm:text-xl"
+                dir="ltr"
+              >
+                050-XXXX-XXX
+              </a>
+
+              <div
+                className="mx-auto my-5 h-px w-24 max-w-[min(100%,12rem)] bg-gradient-to-r from-transparent via-gold/55 to-transparent sm:my-6"
+                aria-hidden
+              />
+
+              <p className="mx-auto flex max-w-md items-start justify-center gap-2.5 text-sm leading-relaxed text-earth/88 sm:text-base">
+                <MapPin
+                  className="mt-0.5 size-4 shrink-0 text-gold sm:size-5"
+                  aria-hidden
+                  strokeWidth={2.25}
+                />
+                <span className="text-pretty font-medium text-earth/95">
+                  عين القدس، المدينة القديمة
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </SectionContainer>
