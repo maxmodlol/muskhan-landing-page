@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# مهرجان المسخن — Landing (Next.js)
 
-## Getting Started
+واجهة عربية RTL لمهرجان مسخن فلسطيني، مع حجز عبر Supabase ولوحة تحكم بسيطة للمشرف.
 
-First, run the development server:
+## التشغيل محلياً
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. انسخ المتغيرات:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+2. املأ قيم Supabase ولوحة التحكم (انظر قسم Supabase أدناه).
+
+3. ثبّت الحزم وشغّل:
+
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+4. الموقع: [http://localhost:3000](http://localhost:3000)  
+   تسجيل المشرف: [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
+
+## Supabase — الجدول والتخزين
+
+### 1) جدول `reservations`
+
+نفّذ في SQL Editor (أو Migrations):
+
+```sql
+create table public.reservations (
+  id uuid primary key default gen_random_uuid(),
+  full_name text not null,
+  phone text not null,
+  guest_count integer not null,
+  note text,
+  payment_proof_url text,
+  created_at timestamptz not null default now()
+);
+
+-- سياسات RLS: للـ MVP يمكن تعطيل RLS على الجدول أو رفض كل شيء للـ anon لأن الإدخال يتم عبر Service Role من الخادم فقط.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2) دلو التخزين `payment-proofs`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- أنشئ bucket باسم **`payment-proofs`**.
+- اجعله **Public** لعرض روابط الصور في لوحة التحكم (أو استخدم روابط موقّعة لاحقاً).
+- لا حاجة لسياسات معقدة إذا كان الرفع يتم فقط من API الخادم باستخدام **Service Role**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3) متغيرات البيئة
 
-## Learn More
+| المتغير | الوصف |
+|--------|--------|
+| `NEXT_PUBLIC_SUPABASE_URL` | رابط المشروع |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | مفتاح anon (للاستخدامات العامة لاحقاً؛ الحجز الحالي يعتمد على Service Role) |
+| `SUPABASE_SERVICE_ROLE_KEY` | **سري** — للخادم فقط (رفع الملفات + إدراج الصفوف) |
+| `ADMIN_USERNAME` / `ADMIN_PASSWORD` | دخول لوحة التحكم |
+| `ADMIN_SESSION_SECRET` | **16 حرفاً على الأقل** — لتوقيع كوكي الجلسة |
 
-To learn more about Next.js, take a look at the following resources:
+انسخ من `.env.example` إلى `.env.local` ولا ترفع الأسرار إلى Git.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## البناء للإنتاج
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
+مناسب للنشر على **Vercel**: أضف نفس المتغيرات في إعدادات المشروع.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Learn More (Next.js)
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Deploying to Vercel](https://nextjs.org/docs/app/building-your-application/deploying)

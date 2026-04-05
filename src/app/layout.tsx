@@ -10,9 +10,9 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: "مهرجان المسخن المقدسي – عين القدس",
+  title: "مهرجان المسخن الفلسطيني – عين القدس",
   description:
-    "حكاية خبزة من طابون عين القدس. احجز تجربتك في مهرجان المسخن المقدسي.",
+    "حكاية خبزة من طابون عين القدس. احجز تجربتك في مهرجان المسخن.",
 };
 
 export default function RootLayout({

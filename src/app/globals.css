@@ -11,12 +11,19 @@
   --font-mono: ui-monospace, monospace;
   --font-heading: var(--font-tajawal), ui-sans-serif, system-ui, sans-serif;
   /* Palestinian musakhan: soil brown, olive oil, stoneware — gold is oil-amber accent only */
-  --color-olive: #4a5630;      /* olive-grove / bottle green, muted */
+  --color-olive: #4a5630; /* olive-grove / bottle green, muted */
   --color-olive-deep: #3a4426; /* shadow olive for stripes & depth */
-  --color-cream: #e2d8c8;      /* warm stoneware, less yellow */
-  --color-earth: #3f2a1a;      /* rich soil brown, primary anchor */
-  --color-gold: #b8945c;       /* warm harvest gold — readable accents */
-  --color-parchment: #ebe3d6;  /* clay-khadi paper */
+  --color-cream: #e2d8c8; /* warm stoneware, less yellow */
+  --color-earth: #3f2a1a; /* rich soil brown, primary anchor */
+  --color-gold: #b8945c; /* warm harvest gold — readable accents */
+  --color-parchment: #ebe3d6; /* clay-khadi paper */
+  /* Sumac — burgundy dust on onions; signature accent (not flat “modern” red) */
+  --color-sumac: #743a42;
+  --color-sumac-deep: #5c2e35;
+  --color-sumac-muted: #9a5a62;
+  /* Passport / booklet cover tone from festival graphics */
+  --color-passport: #1e2f4a;
+  --color-passport-deep: #152238;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -136,7 +143,53 @@
   }
 }
 
+@layer components {
+  /* Shared landing form controls — warm Musakhan palette */
+  .landing-input {
+    @apply h-12 w-full rounded-xl border border-earth/18 bg-cream/95 px-4 text-base text-earth shadow-[inset_0_1px_2px_rgba(63,42,26,0.06)] transition-colors placeholder:text-earth/40 focus-visible:border-sumac/45 focus-visible:ring-2 focus-visible:ring-sumac/15 focus-visible:outline-none;
+  }
+  .landing-textarea {
+    @apply min-h-28 w-full rounded-xl border border-earth/18 bg-cream/95 px-4 py-3 text-base text-earth shadow-[inset_0_1px_2px_rgba(63,42,26,0.06)] transition-colors placeholder:text-earth/40 focus-visible:border-sumac/45 focus-visible:ring-2 focus-visible:ring-sumac/15 focus-visible:outline-none;
+  }
+
+  /** Tatreez-inspired horizontal band (olive / cream / ink — embroidery feel) */
+  .tatreez-band {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--color-olive) 0px,
+      var(--color-olive) 5px,
+      var(--color-parchment) 5px,
+      var(--color-parchment) 9px,
+      var(--color-earth) 9px,
+      var(--color-earth) 11px,
+      var(--color-olive) 11px,
+      var(--color-olive) 16px
+    );
+    background-size: 16px 100%;
+  }
+
+  .tatreez-band-thin {
+    height: 6px;
+    opacity: 0.92;
+  }
+
+  .tatreez-band-wide {
+    height: 11px;
+    opacity: 0.95;
+  }
+
+  /** Subtle paper grain for “document” surfaces */
+  .paper-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+}
+
 @layer utilities {
+  /* Vertical rhythm: sections (tighter on large screens) */
+  .section-pad {
+    @apply py-10 sm:py-10 md:py-10 lg:py-12;
+  }
+
   /* Fades solid sky at top of vertical olive photo — reads cleaner on warm UI */
   .mask-olive-foliage {
     -webkit-mask-image: linear-gradient(

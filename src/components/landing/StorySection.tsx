@@ -26,7 +26,7 @@ function StoryOliveDot({ className }: { className?: string }) {
       )}
       aria-hidden
     >
-      <div className="relative size-9 overflow-hidden rounded-full shadow-md ring-2 ring-gold/35 sm:size-10">
+      <div className="relative size-9 overflow-hidden  sm:size-10">
         <div className="mask-olive-foliage absolute inset-0 scale-110">
           <Image
             src="/olive.jpg"

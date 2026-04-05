@@ -3,9 +3,6 @@ import { SectionContainer } from "@/components/landing/SectionContainer"
 import { SectionDivider } from "@/components/landing/SectionDivider"
 import { cn } from "@/lib/utils"
 
-const FEATURED_IMAGE =
-  "https://images.unsplash.com/photo-1598103442097-8b743d2ebd21?auto=format&fit=crop&w=1200&q=80"
-
 const MENU_ITEMS = [
   {
     name: "فتة المسخن",
@@ -68,7 +65,7 @@ function MenuCard({
   return (
     <article
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl bg-parchment shadow-md ring-1 ring-earth/10 transition hover:-translate-y-0.5 hover:shadow-lg",
+        "group flex min-w-0 flex-col overflow-hidden rounded-2xl bg-parchment shadow-[0_6px_24px_-8px_rgba(63,42,26,0.12)] ring-1 ring-earth/10 transition hover:shadow-[0_12px_32px_-12px_rgba(63,42,26,0.16)]",
         className
       )}
     >
@@ -98,94 +95,80 @@ export function MenuSection() {
   return (
     <section
       id="menu"
-      className="scroll-mt-20 bg-cream py-12 sm:py-16 md:py-20"
+      className="section-pad scroll-mt-20 overflow-x-hidden bg-cream"
     >
-      <SectionContainer>
-        <SectionDivider />
-        <header className="mx-auto mt-3 max-w-3xl text-center sm:mt-5">
-          <h2 className="font-heading text-2xl font-extrabold leading-tight text-olive sm:text-3xl md:text-[2rem]">
-            أطباق مهرجان المسخن
-          </h2>
-          <p className="mt-2.5 text-sm text-earth/90 sm:text-base md:text-lg">
-            تذوق أصالة المطبخ الفلسطيني
-          </p>
-        </header>
+      <SectionContainer className="min-w-0">
+        <div className="mx-auto w-full max-w-6xl">
+          <SectionDivider />
+          <header className="mx-auto mt-3 max-w-3xl text-center sm:mt-5">
+            <h2 className="font-heading text-2xl font-extrabold leading-tight text-olive sm:text-3xl md:text-[2rem]">
+              أطباق مهرجان المسخن
+            </h2>
+            <p className="mt-2.5 text-sm text-earth/90 sm:text-base md:text-lg">
+              تذوق أصالة المطبخ الفلسطيني
+            </p>
+          </header>
 
-        <div className="mx-auto mt-8 max-w-5xl animate-in fade-in slide-in-from-bottom-3 duration-700 md:mt-12">
-          <div className="overflow-hidden rounded-3xl bg-earth shadow-xl ring-1 ring-olive/35">
-            <div className="flex flex-col lg:flex-row lg:items-stretch">
-              <div className="relative aspect-[4/3] w-full lg:aspect-auto lg:min-h-[320px] lg:w-1/2">
-                <Image
-                  src={FEATURED_IMAGE}
-                  alt="مسخن قدسي"
-                  fill
-                  priority
-                  sizes="(max-width:1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-                <span className="absolute top-4 right-4 rounded-full bg-olive px-3 py-1.5 text-xs font-bold text-cream shadow-md ring-1 ring-cream/20 sm:text-sm">
-                  العرض المميز
-                </span>
-              </div>
-              <div className="flex flex-1 flex-col justify-center gap-4 px-5 py-8 sm:px-8 sm:py-10 lg:max-w-none">
-                <div>
-                  <h3 className="font-heading text-2xl font-extrabold leading-tight text-cream sm:text-3xl">
-                    مسخن قدسي
-                  </h3>
-                  <p className="mt-1 text-sm text-cream/90 sm:text-base">
-                    أيقونة المهرجان — لشخصين
-                  </p>
+          <div className="mt-6 sm:mt-8 md:mt-10">
+            <div className="overflow-hidden rounded-2xl bg-earth shadow-[0_16px_48px_-20px_rgba(63,42,26,0.25)] ring-1 ring-olive/35 sm:rounded-3xl">
+              <div className="flex flex-col lg:flex-row lg:items-stretch">
+                <div className="relative aspect-[4/3] w-full min-w-0 lg:aspect-auto lg:min-h-[300px] lg:w-1/2">
+                  <Image
+                    src="/offer.jpg"
+                    alt="مسخن قدسي"
+                    fill
+                    priority
+                    sizes="(max-width:1024px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                  <span className="absolute top-4 right-4 rounded-full border border-sumac/30 bg-olive px-3 py-1.5 text-xs font-bold text-cream shadow-md ring-1 ring-sumac/25 sm:text-sm">
+                    العرض المميز
+                  </span>
                 </div>
-                <ul className="flex flex-col gap-3 text-right text-cream">
-                  {[
-                    "نص دجاجة مسخن",
-                    "2 رول مسخن",
-                    "فتة مسخن",
-                  ].map((line) => (
-                    <li
-                      key={line}
-                      className="flex items-center gap-3 text-sm sm:text-base"
-                    >
-                      <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-gold/90 text-cream">
-                        <span className="text-xs font-bold" aria-hidden>
-                          ✓
+                <div className="flex min-w-0 flex-1 flex-col justify-center gap-4 px-5 py-8 sm:px-8 sm:py-10">
+                  <div>
+                    <h3 className="font-heading text-2xl font-extrabold leading-tight text-cream sm:text-3xl">
+                      مسخن قدسي
+                    </h3>
+                    <p className="mt-1 text-sm text-cream/90 sm:text-base">
+                      أيقونة المهرجان — لشخصين
+                    </p>
+                  </div>
+                  <ul className="flex flex-col gap-3 text-right text-cream">
+                    {["نص دجاجة مسخن", "2 رول مسخن", "فتة مسخن"].map((line) => (
+                      <li
+                        key={line}
+                        className="flex items-center gap-3 text-sm sm:text-base"
+                      >
+                        <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-gold/90 text-cream">
+                          <span className="text-xs font-bold" aria-hidden>
+                            ✓
+                          </span>
                         </span>
-                      </span>
-                      <span>{line}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-sm leading-relaxed text-cream/85 sm:text-base">
-                  نص دجاجة مع بصل وسماق وزيت زيتون — نكهة الطابون كما في بيوت
-                  القدس.
-                </p>
-                <a
-                  href="#booking"
-                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-cream px-6 text-sm font-bold text-earth shadow-md ring-1 ring-earth/15 transition hover:bg-parchment focus-visible:ring-2 focus-visible:ring-olive focus-visible:outline-none sm:min-h-12 sm:text-base"
-                >
-                  اطلب الكومبو
-                </a>
+                        <span>{line}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-sm leading-relaxed text-cream/85 sm:text-base">
+                    نص دجاجة مع بصل وسماق وزيت زيتون — نكهة الطابون كما في بيوت
+                    القدس.
+                  </p>
+                  <a
+                    href="#booking"
+                    className="inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-full border border-transparent bg-cream px-6 text-sm font-bold text-earth shadow-md ring-1 ring-sumac/25 transition hover:border-sumac/35 hover:bg-parchment focus-visible:ring-2 focus-visible:ring-sumac/40 focus-visible:outline-none sm:min-h-12 sm:w-auto sm:self-start sm:text-base"
+                  >
+                    اطلب الكومبو
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="mx-auto mt-8 grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:mt-12 lg:grid-cols-3 lg:gap-7">
-          {MENU_ITEMS.map((item, i) => (
-            <MenuCard
-              key={item.name}
-              {...item}
-              className={cn(
-                "animate-in fade-in duration-500",
-                i === 0 && "delay-75",
-                i === 1 && "delay-100",
-                i === 2 && "delay-150",
-                i === 3 && "delay-200",
-                i === 4 && "delay-300",
-                i === 5 && "delay-500"
-              )}
-            />
-          ))}
+          <div className="mt-6 grid min-w-0 grid-cols-1 gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 md:gap-6 lg:mt-10 lg:grid-cols-3">
+            {MENU_ITEMS.map((item) => (
+              <MenuCard key={item.name} {...item} />
+            ))}
+          </div>
         </div>
       </SectionContainer>
     </section>
