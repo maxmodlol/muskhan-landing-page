@@ -42,13 +42,32 @@ create table public.reservations (
 -- سياسات RLS: للـ MVP يمكن تعطيل RLS على الجدول أو رفض كل شيء للـ anon لأن الإدخال يتم عبر Service Role من الخادم فقط.
 ```
 
-### 2) دلو التخزين `payment-proofs`
+### 2) جدول `event_settings` (سعة الفعالية — يتحكم بها المشرف)
+
+ينفَّذ مرة واحدة. بدون هذا الجدول، تُستخدم السعة من المتغير `EVENT_MAX_GUESTS` في البيئة ثم القيمة الافتراضية (٥٠).
+
+```sql
+create table public.event_settings (
+  id smallint primary key default 1,
+  max_guests integer not null default 50
+    check (max_guests >= 1 and max_guests <= 10000),
+  constraint event_settings_singleton check (id = 1)
+);
+
+insert into public.event_settings (id, max_guests)
+values (1, 50)
+on conflict (id) do nothing;
+```
+
+من لوحة التحكم يمكن تعديل **الحد الأقصى لعدد الضيوف** للفعالية؛ يُحتسب المحجوز من مجموع `guest_count` في `reservations`.
+
+### 3) دلو التخزين `payment-proofs`
 
 - أنشئ bucket باسم **`payment-proofs`**.
 - اجعله **Public** لعرض روابط الصور في لوحة التحكم (أو استخدم روابط موقّعة لاحقاً).
 - لا حاجة لسياسات معقدة إذا كان الرفع يتم فقط من API الخادم باستخدام **Service Role**.
 
-### 3) متغيرات البيئة
+### 4) متغيرات البيئة
 
 | المتغير | الوصف |
 |--------|--------|
@@ -57,6 +76,7 @@ create table public.reservations (
 | `SUPABASE_SERVICE_ROLE_KEY` | **سري** — للخادم فقط (رفع الملفات + إدراج الصفوف) |
 | `ADMIN_USERNAME` / `ADMIN_PASSWORD` | دخول لوحة التحكم |
 | `ADMIN_SESSION_SECRET` | **16 حرفاً على الأقل** — لتوقيع كوكي الجلسة |
+| `EVENT_MAX_GUESTS` (اختياري) | سعة الفعالية عند تعذّر قراءة `event_settings` (افتراضي: ٥٠) |
 
 انسخ من `.env.example` إلى `.env.local` ولا ترفع الأسرار إلى Git.
 

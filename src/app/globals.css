@@ -10,17 +10,20 @@
   --font-sans: var(--font-tajawal), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --font-heading: var(--font-tajawal), ui-sans-serif, system-ui, sans-serif;
-  /* Palestinian musakhan: soil brown, olive oil, stoneware — gold is oil-amber accent only */
+  /* Palestinian musakhan: soil brown, heritage lime (#C3D300), sumac (#8C3048) */
   --color-olive: #4a5630; /* olive-grove / bottle green, muted */
   --color-olive-deep: #3a4426; /* shadow olive for stripes & depth */
   --color-cream: #e2d8c8; /* warm stoneware, less yellow */
   --color-earth: #3f2a1a; /* rich soil brown, primary anchor */
   --color-gold: #b8945c; /* warm harvest gold — readable accents */
   --color-parchment: #ebe3d6; /* clay-khadi paper */
-  /* Sumac — burgundy dust on onions; signature accent (not flat “modern” red) */
-  --color-sumac: #743a42;
-  --color-sumac-deep: #5c2e35;
-  --color-sumac-muted: #9a5a62;
+  /* Brand: vibrant olive-oil / lime accent */
+  --color-heritage: #c3d300;
+  --color-heritage-muted: #a8b82e;
+  /* Sumac — signature burgundy */
+  --color-sumac: #8c3048;
+  --color-sumac-deep: #6e2639;
+  --color-sumac-muted: #a84860;
   /* Passport / booklet cover tone from festival graphics */
   --color-passport: #1e2f4a;
   --color-passport-deep: #152238;
@@ -157,12 +160,14 @@
     background-image: repeating-linear-gradient(
       90deg,
       var(--color-olive) 0px,
-      var(--color-olive) 5px,
-      var(--color-parchment) 5px,
-      var(--color-parchment) 9px,
-      var(--color-earth) 9px,
-      var(--color-earth) 11px,
-      var(--color-olive) 11px,
+      var(--color-olive) 4px,
+      color-mix(in srgb, var(--color-heritage) 55%, var(--color-olive)) 4px,
+      color-mix(in srgb, var(--color-heritage) 55%, var(--color-olive)) 6px,
+      var(--color-parchment) 6px,
+      var(--color-parchment) 10px,
+      var(--color-earth) 10px,
+      var(--color-earth) 12px,
+      var(--color-olive) 12px,
       var(--color-olive) 16px
     );
     background-size: 16px 100%;
@@ -177,7 +182,51 @@
     height: 11px;
     opacity: 0.95;
   }
+  /* Hide scrollbar but keep scrolling */
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* IE and old Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 
+  .scrollbar-hidden::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  /* Optional: elegant themed scrollbar */
+  .scrollbar-musakhan {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(140, 48, 72, 0.75) rgba(63, 42, 26, 0.08);
+  }
+
+  .scrollbar-musakhan::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-musakhan::-webkit-scrollbar-track {
+    background: rgba(63, 42, 26, 0.06);
+    border-radius: 999px;
+  }
+
+  .scrollbar-musakhan::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      to bottom,
+      rgba(195, 211, 0, 0.95),
+      rgba(140, 48, 72, 0.9)
+    );
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .scrollbar-musakhan::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      to bottom,
+      rgba(195, 211, 0, 1),
+      rgba(140, 48, 72, 1)
+    );
+  }
   /** Subtle paper grain for “document” surfaces */
   .paper-grain {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
@@ -185,9 +234,95 @@
 }
 
 @layer utilities {
+  @keyframes hero-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1.5deg);
+    }
+    50% {
+      transform: translateY(-12px) rotate(1deg);
+    }
+  }
+
+  @keyframes hero-float-delayed {
+    0%,
+    100% {
+      transform: translateY(0) rotate(1.2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-1deg);
+    }
+  }
+
+  @keyframes hero-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.45;
+    }
+    50% {
+      opacity: 0.72;
+    }
+  }
+
+  .animate-hero-float {
+    animation: hero-float 9s ease-in-out infinite;
+  }
+
+  .animate-hero-float-delayed {
+    animation: hero-float-delayed 11s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
+  .animate-hero-glow {
+    animation: hero-glow-pulse 6s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-hero-float,
+    .animate-hero-float-delayed,
+    .animate-hero-glow {
+      animation: none;
+    }
+  }
+
+  /* Booking: 3D flip between steps (respect reduced motion via component) */
+  .booking-flip-perspective {
+    perspective: 1400px;
+  }
+
+  .booking-flip-inner {
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .booking-flip-inner[data-step="2"] {
+    transform: rotateY(180deg);
+  }
+
+  .booking-flip-face {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .booking-flip-face--back {
+    transform: rotateY(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .booking-flip-inner {
+      transition: none;
+    }
+    .booking-flip-inner[data-step="2"] {
+      transform: none;
+    }
+    .booking-flip-face--back {
+      transform: none;
+    }
+  }
+
   /* Vertical rhythm: sections (tighter on large screens) */
   .section-pad {
-    @apply py-10 sm:py-10 md:py-10 lg:py-12;
+    @apply py-10 sm:py-10 md:py-10 lg:py-14;
   }
 
   /* Fades solid sky at top of vertical olive photo — reads cleaner on warm UI */

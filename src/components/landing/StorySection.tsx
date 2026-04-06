@@ -1,20 +1,20 @@
-import type { ReactNode } from "react"
-import Image from "next/image"
-import { SectionContainer } from "@/components/landing/SectionContainer"
-import { cn } from "@/lib/utils"
+import type { ReactNode } from "react";
+import Image from "next/image";
+import { SectionContainer } from "@/components/landing/SectionContainer";
+import { cn } from "@/lib/utils";
 
 function StoryDivider({ className }: { className?: string }) {
   return (
     <div
       className={cn(
         "mx-auto flex h-px w-20 items-center justify-center sm:w-24",
-        className
+        className,
       )}
       aria-hidden
     >
-      <span className="h-px w-full bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+      <span className="h-px w-full bg-gradient-to-r from-transparent via-sumac/65 to-sumac/45" />
     </div>
-  )
+  );
 }
 
 function StoryOliveDot({ className }: { className?: string }) {
@@ -22,7 +22,7 @@ function StoryOliveDot({ className }: { className?: string }) {
     <div
       className={cn(
         "mx-auto flex size-11 items-center justify-center sm:size-12",
-        className
+        className,
       )}
       aria-hidden
     >
@@ -38,33 +38,33 @@ function StoryOliveDot({ className }: { className?: string }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function MarkedBlock({
   children,
   className,
 }: {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
 }) {
   return (
     <div
       className={cn(
         "relative mx-auto max-w-lg rounded-2xl px-4 py-3.5 sm:px-5 sm:py-4",
-        "border border-gold/40 bg-gradient-to-br from-cream/18 via-cream/8 to-transparent",
+        "border border-sumac/45 bg-gradient-to-br from-cream/18 via-cream/8 to-transparent",
         "shadow-[inset_0_1px_0_rgba(255,252,245,0.35),0_8px_28px_-12px_rgba(0,0,0,0.25)]",
-        "ring-1 ring-gold/25 backdrop-blur-[2px]",
-        className
+        "ring-1 ring-sumac/30 backdrop-blur-[2px]",
+        className,
       )}
     >
       <span
-        className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-gold/80 to-transparent opacity-90"
+        className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-sumac-muted/85 to-transparent opacity-90"
         aria-hidden
       />
       {children}
     </div>
-  )
+  );
 }
 
 export function StorySection() {
@@ -73,7 +73,7 @@ export function StorySection() {
       id="story"
       className={cn(
         "relative scroll-mt-20 overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24",
-        "bg-[radial-gradient(ellipse_100%_70%_at_50%_-10%,rgba(212,184,130,0.22)_0%,transparent_50%),radial-gradient(ellipse_80%_55%_at_100%_100%,rgba(245,236,214,0.14)_0%,transparent_45%),repeating-linear-gradient(135deg,#5f6d3e_0px,#5f6d3e_14px,#525f36_14px,#525f36_16px)]"
+        "bg-[radial-gradient(ellipse_100%_70%_at_50%_-10%,rgba(195,211,0,0.14)_0%,transparent_50%),radial-gradient(ellipse_80%_55%_at_100%_100%,rgba(140,48,72,0.1)_0%,transparent_45%),repeating-linear-gradient(135deg,#5f6d3e_0px,#5f6d3e_12px,rgba(195,211,0,0.22)_12px,rgba(195,211,0,0.22)_14px,#525f36_14px,#525f36_16px)]",
       )}
     >
       <div
@@ -117,7 +117,7 @@ export function StorySection() {
 
           <div className="mx-auto mt-5 flex justify-center sm:mt-6">
             <span
-              className="size-2 rounded-full bg-gold shadow-[0_0_0_2px_rgba(250,247,239,0.25)]"
+              className="size-2 rounded-full bg-sumac shadow-[0_0_0_2px_rgba(250,247,239,0.3)] ring-1 ring-sumac-muted/50"
               aria-hidden
             />
           </div>
@@ -136,5 +136,5 @@ export function StorySection() {
         </div>
       </SectionContainer>
     </section>
-  )
+  );
 }

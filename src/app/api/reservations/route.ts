@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
+import { getCapacitySnapshot, MAX_PARTY_GUESTS } from "@/lib/booking-capacity"
+import { toEasternArabicNumerals } from "@/lib/eastern-arabic-numerals"
 import { createServerSupabaseAdmin } from "@/lib/supabase-admin"
 import { BUCKET, sanitizeFilename } from "@/lib/reservation-utils"
 import { isSupabaseConfigured } from "@/lib/supabase"
@@ -36,7 +38,11 @@ export async function POST(request: NextRequest) {
 
   let guest_count = parseInt(guestRaw, 10)
   if (guestRaw === "9" || guestRaw === "8+") guest_count = 9
-  if (Number.isNaN(guest_count) || guest_count < 1 || guest_count > 50) {
+  if (
+    Number.isNaN(guest_count) ||
+    guest_count < 1 ||
+    guest_count > MAX_PARTY_GUESTS
+  ) {
     return NextResponse.json({ error: "الرجاء اختيار عدد الضيوف" }, { status: 400 })
   }
 
@@ -49,6 +55,51 @@ export async function POST(request: NextRequest) {
   const mime = file.type
   if (mime !== "image/png" && mime !== "image/jpeg") {
     return NextResponse.json({ error: "يُسمح بصور PNG أو JPG فقط" }, { status: 400 })
+  }
+
+  let snapshot
+  try {
+    snapshot = await getCapacitySnapshot(supabase)
+  } catch (e) {
+    console.error(e)
+    return NextResponse.json(
+      { error: "تعذّر التحقق من السعة. حاول لاحقاً." },
+      { status: 503 },
+    )
+  }
+
+  if (snapshot.isFull) {
+    return NextResponse.json(
+      { error: "الفعالية محجوزة بالكامل — لا تتوفر مقاعد حالياً." },
+      { status: 409 },
+    )
+  }
+
+  if (guest_count > snapshot.remaining) {
+    const ar = toEasternArabicNumerals(snapshot.remaining)
+    return NextResponse.json(
+      {
+        error:
+          snapshot.remaining === 0
+            ? "الفعالية محجوزة بالكامل."
+            : `تبقّى ${ar} مقعداً فقط — اختر عدداً أصغر.`,
+      },
+      { status: 409 },
+    )
+  }
+
+  const snapshotConfirm = await getCapacitySnapshot(supabase)
+  if (guest_count > snapshotConfirm.remaining) {
+    const ar = toEasternArabicNumerals(snapshotConfirm.remaining)
+    return NextResponse.json(
+      {
+        error:
+          snapshotConfirm.remaining === 0
+            ? "الفعالية محجوزة بالكامل."
+            : `تبقّى ${ar} مقعداً فقط — رُبما اكتملت السعة للتو.`,
+      },
+      { status: 409 },
+    )
   }
 
   const buf = Buffer.from(await file.arrayBuffer())

@@ -14,6 +14,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import type { ReservationRow } from "@/types/reservation"
 import { cn } from "@/lib/utils"
 
@@ -29,32 +31,95 @@ export default function AdminDashboardPage() {
   const [deleteTargetId, setDeleteTargetId] = React.useState<string | null>(null)
   const [deleteDialogError, setDeleteDialogError] = React.useState<string | null>(null)
 
+  const [eventMaxGuests, setEventMaxGuests] = React.useState<number | null>(null)
+  const [eventMaxInput, setEventMaxInput] = React.useState("")
+  const [settingsError, setSettingsError] = React.useState<string | null>(null)
+  const [settingsSaving, setSettingsSaving] = React.useState(false)
+  const [settingsSaved, setSettingsSaved] = React.useState(false)
+
   const load = React.useCallback(async () => {
     setError(null)
+    setSettingsError(null)
     setLoading(true)
     try {
-      const res = await fetch("/api/admin/reservations", { credentials: "include" })
-      const data = (await res.json()) as {
+      const [resList, resSettings] = await Promise.all([
+        fetch("/api/admin/reservations", { credentials: "include" }),
+        fetch("/api/admin/settings", { credentials: "include" }),
+      ])
+
+      const listData = (await resList.json()) as {
         reservations?: ReservationRow[]
         stats?: Stats
         error?: string
       }
-      if (!res.ok) {
-        if (res.status === 401) {
+
+      if (!resList.ok) {
+        if (resList.status === 401) {
           router.replace("/admin/login")
           return
         }
-        setError(data.error ?? "فشل التحميل")
+        setError(listData.error ?? "فشل التحميل")
+        setLoading(false)
         return
       }
-      setRows(data.reservations ?? [])
-      setStats(data.stats ?? null)
+
+      setRows(listData.reservations ?? [])
+      setStats(listData.stats ?? null)
+
+      const settingsData = (await resSettings.json()) as {
+        maxGuests?: number
+        error?: string
+      }
+      if (resSettings.ok && typeof settingsData.maxGuests === "number") {
+        setEventMaxGuests(settingsData.maxGuests)
+        setEventMaxInput(String(settingsData.maxGuests))
+      } else {
+        setEventMaxGuests(null)
+        setSettingsError(
+          settingsData.error ??
+            "تعذّر تحميل سعة الفعالية (تحقق من جدول event_settings في README).",
+        )
+      }
     } catch {
       setError("خطأ في الاتصال")
     } finally {
       setLoading(false)
     }
   }, [router])
+
+  async function saveEventCapacity() {
+    setSettingsError(null)
+    setSettingsSaved(false)
+    const n = parseInt(eventMaxInput.trim(), 10)
+    if (!Number.isFinite(n) || n < 1) {
+      setSettingsError("أدخل عدداً صحيحاً أكبر من صفر.")
+      return
+    }
+    setSettingsSaving(true)
+    try {
+      const res = await fetch("/api/admin/settings", {
+        method: "PATCH",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ maxGuests: n }),
+      })
+      const data = (await res.json()) as { maxGuests?: number; error?: string }
+      if (!res.ok) {
+        setSettingsError(data.error ?? "فشل الحفظ")
+        return
+      }
+      if (typeof data.maxGuests === "number") {
+        setEventMaxGuests(data.maxGuests)
+        setEventMaxInput(String(data.maxGuests))
+      }
+      setSettingsSaved(true)
+      window.setTimeout(() => setSettingsSaved(false), 3000)
+    } catch {
+      setSettingsError("خطأ في الاتصال")
+    } finally {
+      setSettingsSaving(false)
+    }
+  }
 
   React.useEffect(() => {
     void load()
@@ -198,12 +263,76 @@ export default function AdminDashboardPage() {
               <p className="mt-2 font-heading text-3xl font-extrabold text-earth">
                 {stats?.totalGuests ?? 0}
               </p>
+              {eventMaxGuests !== null ? (
+                <p className="mt-2 text-xs text-earth/60">
+                  من أصل{" "}
+                  <span className="font-semibold text-olive">{eventMaxGuests}</span>{" "}
+                  مقعداً للفعالية
+                </p>
+              ) : null}
             </div>
             <div className="rounded-2xl border border-earth/10 bg-cream/90 p-5 shadow-sm ring-1 ring-gold/10">
               <p className="text-sm font-medium text-earth/70">حجوزات اليوم</p>
               <p className="mt-2 font-heading text-3xl font-extrabold text-earth">
                 {stats?.today ?? 0}
               </p>
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-earth/12 bg-parchment/90 p-5 shadow-sm ring-1 ring-sumac/15 sm:p-6">
+            <h2 className="font-heading text-lg font-extrabold text-olive sm:text-xl">
+              سعة الفعالية (الحد الأقصى للضيوف)
+            </h2>
+            <p className="mt-1 text-sm text-earth/70">
+              يحدّ هذا الرقم السعة المعروضة في نموذج الحجز ويُقارَن مع مجموع{" "}
+              <code className="rounded bg-earth/5 px-1 text-xs">guest_count</code>{" "}
+              في الحجوزات.
+            </p>
+            {settingsError ? (
+              <p
+                className="mt-3 rounded-xl border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+                role="alert"
+              >
+                {settingsError}
+              </p>
+            ) : null}
+            <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end">
+              <div className="flex flex-1 flex-col gap-2">
+                <Label htmlFor="event_max_guests" className="text-earth">
+                  العدد الأقصى (شخصاً)
+                </Label>
+                <Input
+                  id="event_max_guests"
+                  type="number"
+                  min={1}
+                  max={10000}
+                  dir="ltr"
+                  className="h-11 max-w-[12rem] rounded-xl border-earth/20 text-left font-mono text-base"
+                  value={eventMaxInput}
+                  onChange={(e) => {
+                    setEventMaxInput(e.target.value)
+                    setSettingsSaved(false)
+                  }}
+                  disabled={loading || settingsSaving}
+                />
+              </div>
+              <Button
+                type="button"
+                className="h-11 rounded-full px-8 font-bold"
+                disabled={loading || settingsSaving}
+                onClick={() => void saveEventCapacity()}
+              >
+                {settingsSaving ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Loader2 className="size-4 animate-spin" aria-hidden />
+                    جاري الحفظ…
+                  </span>
+                ) : settingsSaved ? (
+                  "تم الحفظ"
+                ) : (
+                  "حفظ السعة"
+                )}
+              </Button>
             </div>
           </div>
 
