@@ -139,7 +139,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-musakhan-atmosphere text-earth font-sans;
+    @apply bg-parchment text-earth font-sans;
   }
   html {
     @apply font-sans;
