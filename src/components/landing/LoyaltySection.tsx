@@ -23,7 +23,7 @@ export function LoyaltySection() {
   return (
     <section
       id="loyalty"
-      className="section-pad relative scroll-mt-20 overflow-x-hidden bg-parchment"
+      className="section-pad relative scroll-mt-20 overflow-x-hidden bg-musakhan-atmosphere"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_70%_at_50%_20%,rgba(140,48,72,0.08)_0%,transparent_55%)]"

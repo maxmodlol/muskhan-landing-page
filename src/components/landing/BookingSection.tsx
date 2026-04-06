@@ -743,7 +743,7 @@ export function BookingSection() {
   return (
     <section
       id="booking"
-      className="section-pad relative scroll-mt-10 overflow-x-hidden bg-linear-to-b from-parchment via-cream/30 to-parchment"
+      className="bg-musakhan-atmosphere section-pad relative scroll-mt-10 overflow-x-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_10px,rgba(63,42,26,0.04)_10px,rgba(63,42,26,0.04)_11px)] opacity-60"

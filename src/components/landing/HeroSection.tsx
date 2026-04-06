@@ -119,7 +119,7 @@ export function HeroSection() {
           <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center lg:max-w-5xl">
             <div className="mb-3 flex items-center justify-center gap-2 sm:mb-4">
               <span className="h-px w-14 bg-gradient-to-l from-transparent via-heritage/70 to-sumac/40 sm:w-20" />
-              <span className="size-2 shrink-0 rotate-45 border border-heritage/80 bg-parchment/95 shadow-[0_0_0_1px_rgba(140,48,72,0.2)]" />
+              <span className="size-2 shrink-0 rotate-45 border border-heritage/80 bg-musakhan-atmosphere/95 shadow-[0_0_0_1px_rgba(140,48,72,0.2)]" />
               <span className="h-px w-14 bg-gradient-to-r from-transparent via-heritage/70 to-sumac/40 sm:w-20" />
             </div>
 
@@ -140,7 +140,7 @@ export function HeroSection() {
             </p>
 
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-6">
-              <span className="rounded-lg border border-earth/10 bg-parchment/75 px-3 py-1 text-[0.7rem] font-semibold text-earth/75 backdrop-blur-sm sm:text-xs">
+              <span className="rounded-lg border border-earth/10 bg-musakhan-atmosphere/75 px-3 py-1 text-[0.7rem] font-semibold text-earth/75 backdrop-blur-sm sm:text-xs">
                 طابون · زيت زيتون · سماق
               </span>
               <span className="hidden h-4 w-px bg-gradient-to-b from-transparent via-heritage/50 to-transparent sm:block" />

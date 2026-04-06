@@ -65,11 +65,11 @@ function MenuDishCard({ item }: { item: MenuItemRecord }) {
   return (
     <article
       className={cn(
-        "group flex min-w-0 flex-col overflow-hidden rounded-2xl bg-parchment shadow-[0_8px_28px_-10px_rgba(63,42,26,0.14)] ring-1 ring-earth/10 transition",
+        "group flex min-w-0 flex-col overflow-hidden rounded-2xl bg-musakhan-atmosphere shadow-[0_8px_28px_-10px_rgba(63,42,26,0.14)] ring-1 ring-earth/10 transition",
         "hover:shadow-[0_16px_40px_-14px_rgba(140,48,72,0.18)] hover:ring-heritage/35",
       )}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-parchment">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-musakhan-atmosphere">
         {hasImage && item.image ? (
           <Image
             src={item.image}
@@ -107,7 +107,7 @@ export function MenuSection() {
   return (
     <section
       id="menu"
-      className="section-pad scroll-mt-20 overflow-x-hidden bg-cream"
+      className="section-pad scroll-mt-20 overflow-x-hidden bg-musakhan-atmosphere"
     >
       <SectionContainer className="min-w-0">
         <div className="mx-auto w-full max-w-6xl">
@@ -185,7 +185,7 @@ export function MenuSection() {
                       ) : null}
                       <a
                         href="#booking"
-                        className="mt-6 inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-full border border-heritage/50 bg-cream px-6 text-sm font-bold text-sumac-deep shadow-md transition hover:border-heritage hover:bg-parchment focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage/50 sm:min-h-12 sm:w-auto sm:self-start sm:text-base"
+                        className="mt-6 inline-flex min-h-11 w-full min-w-0 items-center justify-center rounded-full border border-heritage/50 bg-cream px-6 text-sm font-bold text-sumac-deep shadow-md transition hover:border-heritage hover:bg-musakhan-atmosphere focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage/50 sm:min-h-12 sm:w-auto sm:self-start sm:text-base"
                       >
                         اطلب الكومبو
                       </a>
