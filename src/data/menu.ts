@@ -35,12 +35,7 @@ export const MENU_FIXED_SECTIONS: readonly MenuFixedSection[] = [
   {
     id: "garnish",
     title: "التصليحة الرسمية",
-    lines: [
-      "بصل أخضر",
-      "شرحات بندورة",
-      "فلفل أخضر حار",
-      "زيتون، جرجير",
-    ],
+    lines: ["بصل أخضر", "شرحات بندورة", "فلفل أخضر حار", "زيتون، جرجير"],
   },
 ] as const;
 
@@ -62,78 +57,69 @@ export const MENU_ITEMS: readonly MenuItemRecord[] = [
     price: "85 ₪",
     description:
       "نصف دجاج على خبز الطابون عين القدس، بصل وسماق تشويح بزيت الزيتون",
-    image: "/offer.jpg",
+    image: "/مسخن_قدسي.jpeg",
   },
   {
     id: "fatta",
     name: "فتة مسخن",
     price: "58 ₪",
-    description:
-      "خبز طابون محمص، لبن بالثوم، بصل وسماق، قطع دجاج مسخن",
-    image:
-      "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80",
+    description: "خبز طابون محمص، لبن بالثوم، بصل وسماق، قطع دجاج مسخن",
+    image: "/فتة_مسخن.jpeg",
   },
   {
     id: "steak",
     name: "ستيك مسخن",
     price: "69 ₪",
-    description:
-      "ستيك دجاج مسخن على خبزة عين القدس مع بصل وسماق وزيت زيتون",
+    description: "ستيك دجاج مسخن على خبزة عين القدس مع بصل وسماق وزيت زيتون",
+    image: "/ستيك_مسخن.jpeg",
   },
   {
     id: "roll",
     name: "مسخن رول",
     price: "48 ₪",
-    description:
-      "رولات شراك محشوة بدجاج مع بصل وسماق تشويح بزيت الزيتون",
-    image:
-      "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=800&q=80",
+    description: "رولات شراك محشوة بدجاج مع بصل وسماق تشويح بزيت الزيتون",
+    image: "/مسخن_رول.jpeg",
   },
   {
     id: "pizza",
     name: "بيتزا مسخن",
     price: "55 ₪",
     description: "عجينة طازجة، دجاج مسخن، بصل وسماق",
-    image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80",
+    image: "/بيتزا_مسخن.jpeg",
   },
   {
     id: "calzone",
     name: "كلزوني مسخن",
     price: "52 ₪",
     description: "عجينة محشية، دجاج مسخن مع بصل وسماق",
-    image:
-      "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80",
+    image: "/كلزوني_مسخن.jpeg",
   },
   {
     id: "salad",
     name: "سلطة المسخن",
     price: "42 ₪",
-    description:
-      "خس طازج، قطع دجاج مسخن، خبز محمص بالسماق، وصلصة لبن",
-    image:
-      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
+    description: "خس طازج، قطع دجاج مسخن، خبز محمص بالسماق، وصلصة لبن",
+    image: "/سلطة_مسخن.jpeg",
   },
   {
     id: "kebab",
     name: "كباب مسخن",
     price: "98 ₪",
-    description:
-      "كباب دجاج مع بصل وسماق وزيت زيتون، مغطى بعجينة مخبوزة",
+    description: "كباب دجاج مع بصل وسماق وزيت زيتون، مغطى بعجينة مخبوزة",
+    image: "/كباب_مسخن.jpeg",
   },
   {
     id: "fettuccine",
     name: "فوتتشيني مسخن",
     price: "68 ₪",
-    description:
-      "فوتتشيني مع شرائح صدر دجاج، يقدّم مع بصل وسماق وزيت زيتون",
+    description: "فوتتشيني مع شرائح صدر دجاج، يقدّم مع بصل وسماق وزيت زيتون",
   },
   {
     id: "burger",
     name: "بيرجر مسخن",
     price: "65 ₪",
-    description:
-      "صدر دجاج مشوي مع بصل وسماق وزيت زيتون، ملفوف بعجينة مخبوزة",
+    description: "صدر دجاج مشوي مع بصل وسماق وزيت زيتون، ملفوف بعجينة مخبوزة",
+    image: "/بيرغر_مسخن.jpeg",
   },
 ] as const;
 

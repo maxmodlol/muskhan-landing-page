@@ -391,23 +391,6 @@
     mix-blend-mode: multiply;
   }
 
-  /** Subtle “highlighter” bars behind description lines (printed menu) */
-  .menu-desc-bars {
-    background-image:
-      linear-gradient(
-        transparent 0.15em,
-        rgba(89, 42, 68, 0.07) 0.15em,
-        rgba(89, 42, 68, 0.07) 0.42em,
-        transparent 0.42em
-      ),
-      linear-gradient(
-        transparent 0.58em,
-        rgba(89, 42, 68, 0.055) 0.58em,
-        rgba(89, 42, 68, 0.055) 0.78em,
-        transparent 0.78em
-      );
-  }
-
   .tatreez-band-thin {
     height: 6px;
     opacity: 0.92;

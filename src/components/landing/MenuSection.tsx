@@ -84,13 +84,13 @@ function MenuDishRow({ item }: { item: MenuItemRecord }) {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
         <div className="flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:gap-4">
           {item.image ? (
-            <div className="relative mx-auto aspect-[4/3] w-full max-w-[14rem] shrink-0 overflow-hidden rounded-sm border border-sumac/25 shadow-md sm:mx-0 sm:aspect-square sm:h-[5.25rem] sm:w-[5.25rem] sm:max-w-none">
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-[16rem] shrink-0 overflow-hidden rounded-md border border-sumac/25 bg-parchment/90 p-1 shadow-md ring-1 ring-sumac/10 sm:mx-0 sm:max-w-[12.5rem]">
               <Image
                 src={item.image}
                 alt=""
                 fill
-                sizes="(max-width:640px) 280px, 84px"
-                className="object-cover"
+                sizes="(max-width:640px) min(100vw, 400px), 200px"
+                className="object-contain object-center"
               />
             </div>
           ) : null}
@@ -99,11 +99,7 @@ function MenuDishRow({ item }: { item: MenuItemRecord }) {
               {item.name}
             </h3>
             {item.description ? (
-              <p
-                className={cn(
-                  "menu-desc-bars mt-2 inline-block max-w-xl text-pretty text-sm leading-[1.75] text-sumac-deep/88 sm:text-base",
-                )}
-              >
+              <p className="mt-2 max-w-xl text-pretty text-sm leading-relaxed text-sumac-deep/88 sm:text-base">
                 {item.description}
               </p>
             ) : null}
@@ -147,14 +143,14 @@ function MenuFeaturedBlock({ item }: { item: MenuItemRecord }) {
         className="flex flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-6"
       >
         {item.image ? (
-          <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-sm border border-sumac/30 shadow-[0_12px_32px_-16px_rgba(89,42,68,0.35)] sm:aspect-auto sm:h-[min(12rem,36vh)] sm:w-[min(42%,14rem)] sm:max-w-[220px]">
+          <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-md border border-sumac/30 bg-parchment/90 p-1.5 shadow-[0_12px_32px_-16px_rgba(89,42,68,0.35)] ring-1 ring-sumac/15 sm:w-[min(42%,15rem)] sm:max-w-[240px]">
             <Image
               src={item.image}
               alt={item.name}
               fill
               priority
-              sizes="(max-width:640px) 100vw, 220px"
-              className="object-cover"
+              sizes="(max-width:640px) 100vw, 240px"
+              className="object-contain object-center"
             />
           </div>
         ) : null}
@@ -164,7 +160,7 @@ function MenuFeaturedBlock({ item }: { item: MenuItemRecord }) {
             {item.name}
           </h3>
           {item.description ? (
-            <p className="menu-desc-bars mt-2 inline-block text-sm font-medium leading-relaxed text-sumac-deep/90 sm:text-base">
+            <p className="mt-2 text-sm font-medium leading-relaxed text-sumac-deep/90 sm:text-base">
               {item.description}
             </p>
           ) : null}
