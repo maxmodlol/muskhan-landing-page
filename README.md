@@ -35,9 +35,17 @@ create table public.reservations (
   phone text not null,
   guest_count integer not null,
   note text,
-  payment_proof_url text,
+  -- JSON نصّي: مصفوفة [{ "id", "name", "price", "qty" }, ...]
+  menu_order text,
   created_at timestamptz not null default now()
 );
+
+-- ترقية من مخطط قديم (بدون menu_order):
+-- alter table public.reservations add column if not exists menu_order text;
+
+-- إزالة عمود إثبات الدفع القديم (إن وُجد):
+-- alter table public.reservations drop column if exists payment_proof_url;
+-- (أو نفّذ ملف الهجرة في supabase/migrations/)
 
 -- سياسات RLS: للـ MVP يمكن تعطيل RLS على الجدول أو رفض كل شيء للـ anon لأن الإدخال يتم عبر Service Role من الخادم فقط.
 ```
@@ -61,11 +69,10 @@ on conflict (id) do nothing;
 
 من لوحة التحكم يمكن تعديل **الحد الأقصى لعدد الضيوف** للفعالية؛ يُحتسب المحجوز من مجموع `guest_count` في `reservations`.
 
-### 3) دلو التخزين `payment-proofs`
+### 3) طلب القائمة
 
-- أنشئ bucket باسم **`payment-proofs`**.
-- اجعله **Public** لعرض روابط الصور في لوحة التحكم (أو استخدم روابط موقّعة لاحقاً).
-- لا حاجة لسياسات معقدة إذا كان الرفع يتم فقط من API الخادم باستخدام **Service Role**.
+- يُخزَّن الطلب في عمود **`menu_order`** كنص JSON (مصفوفة أسطر: معرّف، اسم، سعر، كمية).
+- لا يُطلب رفع ملفات أو إثبات دفع؛ يمكن حذف دلو `payment-proofs` من مشاريع قديمة إن لم تعد تُستخدم.
 
 ### 4) متغيرات البيئة
 

@@ -2,10 +2,34 @@ import { NextRequest, NextResponse } from "next/server"
 import { getCapacitySnapshot, MAX_PARTY_GUESTS } from "@/lib/booking-capacity"
 import { toEasternArabicNumerals } from "@/lib/eastern-arabic-numerals"
 import { createServerSupabaseAdmin } from "@/lib/supabase-admin"
-import { BUCKET, sanitizeFilename } from "@/lib/reservation-utils"
 import { isSupabaseConfigured } from "@/lib/supabase"
 
-const MAX_BYTES = 10 * 1024 * 1024
+type OrderLine = { id: string; name: string; price: string; qty: number }
+
+function parseMenuOrder(raw: string): OrderLine[] | null {
+  const s = raw.trim()
+  if (!s) return null
+  try {
+    const parsed = JSON.parse(s) as unknown
+    if (!Array.isArray(parsed) || parsed.length === 0) return null
+    const out: OrderLine[] = []
+    for (const row of parsed) {
+      if (!row || typeof row !== "object") return null
+      const o = row as Record<string, unknown>
+      const id = typeof o.id === "string" ? o.id : ""
+      const name = typeof o.name === "string" ? o.name : ""
+      const price = typeof o.price === "string" ? o.price : ""
+      const qty = typeof o.qty === "number" ? o.qty : NaN
+      if (!id || !name || !Number.isFinite(qty) || qty < 1 || qty > 999) {
+        return null
+      }
+      out.push({ id, name, price, qty })
+    }
+    return out
+  } catch {
+    return null
+  }
+}
 
 export async function POST(request: NextRequest) {
   if (!isSupabaseConfigured()) {
@@ -27,7 +51,7 @@ export async function POST(request: NextRequest) {
   const phone = String(form.get("phone") ?? "").trim()
   const guestRaw = String(form.get("guest_count") ?? "").trim()
   const note = String(form.get("note") ?? "").trim()
-  const file = form.get("payment")
+  const menuOrderRaw = String(form.get("menu_order") ?? "").trim()
 
   if (!full_name || full_name.length < 2) {
     return NextResponse.json({ error: "الرجاء إدخال الاسم" }, { status: 400 })
@@ -46,15 +70,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "الرجاء اختيار عدد الضيوف" }, { status: 400 })
   }
 
-  if (!(file instanceof File) || file.size === 0) {
-    return NextResponse.json({ error: "الرجاء رفع صورة إثبات الدفع" }, { status: 400 })
-  }
-  if (file.size > MAX_BYTES) {
-    return NextResponse.json({ error: "حجم الملف يجب أن لا يتجاوز 10 ميجابايت" }, { status: 400 })
-  }
-  const mime = file.type
-  if (mime !== "image/png" && mime !== "image/jpeg") {
-    return NextResponse.json({ error: "يُسمح بصور PNG أو JPG فقط" }, { status: 400 })
+  const orderLines = parseMenuOrder(menuOrderRaw)
+  if (!orderLines) {
+    return NextResponse.json(
+      { error: "الرجاء إضافة أطباق من القائمة إلى طلبك" },
+      { status: 400 }
+    )
   }
 
   let snapshot
@@ -102,36 +123,24 @@ export async function POST(request: NextRequest) {
     )
   }
 
-  const buf = Buffer.from(await file.arrayBuffer())
-  const objectPath = `proofs/${Date.now()}-${sanitizeFilename(file.name)}`
-
-  const { error: uploadError } = await supabase.storage
-    .from(BUCKET)
-    .upload(objectPath, buf, { contentType: mime, upsert: false })
-
-  if (uploadError) {
-    console.error(uploadError)
-    return NextResponse.json(
-      { error: "فشل رفع الملف. تحقق من إعدادات التخزين في Supabase." },
-      { status: 500 }
-    )
-  }
+  const menu_order_json = JSON.stringify(orderLines)
 
   const { error: insertError } = await supabase.from("reservations").insert({
     full_name,
     phone,
     guest_count,
     note: note || null,
-    /** Object path in bucket (private bucket — no public URL stored). */
-    payment_proof_url: objectPath,
+    menu_order: menu_order_json,
   })
 
   if (insertError) {
     console.error(insertError)
-    await supabase.storage.from(BUCKET).remove([objectPath])
     return NextResponse.json(
-      { error: "فشل حفظ الحجز. تحقق من الجدول في Supabase." },
-      { status: 500 }
+      {
+        error:
+          "فشل حفظ الحجز. تحقق من الجدول في Supabase (عمود menu_order مطلوب — انظر README).",
+      },
+      { status: 500 },
     )
   }
 

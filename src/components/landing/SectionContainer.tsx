@@ -7,7 +7,7 @@ export function SectionContainer({
   return (
     <div
       className={cn(
-        "mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6 lg:px-5 xl:max-w-[90rem]",
+        "mx-auto w-full max-w-7xl px-4 sm:px-5 md:px-6 lg:px-8 xl:max-w-[90rem]",
         className,
       )}
       {...props}

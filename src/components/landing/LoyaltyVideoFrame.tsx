@@ -18,12 +18,12 @@ export function LoyaltyVideoFrame({
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden rounded-2xl border border-earth/15 bg-linear-to-br from-cream/90 via-parchment to-cream/70 shadow-[0_20px_50px_-24px_rgba(140,48,72,0.35),inset_0_1px_0_rgba(255,253,248,0.65)] ring-1 ring-heritage/25 sm:rounded-3xl",
+        "relative w-full overflow-hidden rounded-2xl border border-earth/15 bg-linear-to-br from-cream/90 via-parchment to-cream/70 shadow-[0_20px_50px_-24px_rgba(89,42,68,0.32),inset_0_1px_0_rgba(255,253,248,0.65)] ring-1 ring-heritage/25 sm:rounded-3xl",
         className,
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(195,211,0,0.12)_0%,transparent_55%),radial-gradient(ellipse_70%_50%_at_100%_100%,rgba(140,48,72,0.08)_0%,transparent_50%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(186,191,31,0.14)_0%,transparent_55%),radial-gradient(ellipse_70%_50%_at_100%_100%,rgba(89,42,68,0.08)_0%,transparent_50%)]"
         aria-hidden
       />
       <div
@@ -43,7 +43,7 @@ export function LoyaltyVideoFrame({
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6 text-center">
             <div
-              className="flex size-16 items-center justify-center rounded-full border-2 border-heritage/55 bg-sumac/95 text-cream shadow-[0_12px_32px_-12px_rgba(140,48,72,0.55)] ring-4 ring-cream/30 sm:size-[4.5rem]"
+              className="flex size-16 items-center justify-center rounded-full border-2 border-heritage/55 bg-sumac/95 text-cream shadow-[0_12px_32px_-12px_rgba(89,42,68,0.5)] ring-4 ring-cream/30 sm:size-[4.5rem]"
               aria-hidden
             >
               <Play className="size-8 translate-x-0.5 fill-current sm:size-9" />

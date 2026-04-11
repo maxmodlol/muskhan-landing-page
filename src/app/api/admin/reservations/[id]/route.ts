@@ -2,7 +2,6 @@ import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 import { COOKIE_NAME, verifyAdminJwt } from "@/lib/auth"
 import { createServerSupabaseAdmin } from "@/lib/supabase-admin"
-import { BUCKET, proofObjectPathFromDb } from "@/lib/reservation-utils"
 import { isSupabaseConfigured } from "@/lib/supabase"
 
 async function requireAdmin(): Promise<boolean> {
@@ -35,28 +34,18 @@ export async function DELETE(
     return NextResponse.json({ error: "خطأ في الاتصال" }, { status: 500 })
   }
 
-  const { data: row, error: fetchErr } = await supabase
+  const { data: deleted, error: delErr } = await supabase
     .from("reservations")
-    .select("payment_proof_url")
+    .delete()
     .eq("id", id)
-    .single()
+    .select("id")
 
-  if (fetchErr || !row) {
-    return NextResponse.json({ error: "السجل غير موجود" }, { status: 404 })
-  }
-
-  const url = row.payment_proof_url as string | null
-  if (url) {
-    const path = proofObjectPathFromDb(url)
-    if (path) {
-      await supabase.storage.from(BUCKET).remove([path])
-    }
-  }
-
-  const { error: delErr } = await supabase.from("reservations").delete().eq("id", id)
   if (delErr) {
     console.error(delErr)
     return NextResponse.json({ error: "فشل الحذف" }, { status: 500 })
+  }
+  if (!deleted?.length) {
+    return NextResponse.json({ error: "السجل غير موجود" }, { status: 404 })
   }
 
   return NextResponse.json({ ok: true })

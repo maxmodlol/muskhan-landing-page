@@ -16,6 +16,7 @@ import {
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { MenuOrderCell } from "@/components/admin/MenuOrderCell";
 import type { ReservationRow } from "@/types/reservation";
 import { cn } from "@/lib/utils";
 
@@ -187,8 +188,8 @@ export default function AdminDashboardPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>تأكيد حذف الحجز</AlertDialogTitle>
             <AlertDialogDescription>
-              سيتم حذف هذا السجل نهائياً مع صورة إثبات الدفع من التخزين. لا يمكن
-              التراجع عن هذا الإجراء.
+              سيتم حذف هذا السجل نهائياً من قاعدة البيانات. لا يمكن التراجع عن
+              هذا الإجراء.
             </AlertDialogDescription>
           </AlertDialogHeader>
           {deleteDialogError ? (
@@ -372,11 +373,11 @@ export default function AdminDashboardPage() {
                     <th className="px-3 py-3 font-semibold text-olive sm:px-4">
                       الضيوف
                     </th>
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
-                      ملاحظة
+                    <th className="min-w-[240px] px-3 py-3 font-semibold text-olive sm:px-4">
+                      طلب القائمة (تفاصيل)
                     </th>
                     <th className="px-3 py-3 font-semibold text-olive sm:px-4">
-                      إثبات الدفع
+                      ملاحظة
                     </th>
                     <th className="px-3 py-3 font-semibold text-olive sm:px-4">
                       التاريخ
@@ -401,29 +402,11 @@ export default function AdminDashboardPage() {
                       <td className="px-3 py-3 align-top sm:px-4">
                         {guestLabel(r.guest_count)}
                       </td>
-                      <td className="max-w-[200px] px-3 py-3 align-top text-earth/85 sm:px-4">
-                        {r.note ?? "—"}
+                      <td className="min-w-[220px] max-w-[26rem] px-3 py-3 align-top sm:px-4">
+                        <MenuOrderCell raw={r.menu_order} />
                       </td>
-                      <td className="px-3 py-3 align-top sm:px-4">
-                        {r.payment_proof_view_url ? (
-                          <a
-                            href={r.payment_proof_view_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-olive underline underline-offset-2"
-                          >
-                            عرض الصورة
-                          </a>
-                        ) : r.payment_proof_url ? (
-                          <span
-                            className="text-earth/60"
-                            title="تعذّر إنشاء رابط مؤقّت"
-                          >
-                            غير متاح
-                          </span>
-                        ) : (
-                          "—"
-                        )}
+                      <td className="max-w-[180px] px-3 py-3 align-top text-earth/85 sm:px-4">
+                        {r.note ?? "—"}
                       </td>
                       <td className="whitespace-nowrap px-3 py-3 align-top text-earth/80 sm:px-4">
                         {new Date(r.created_at).toLocaleString("ar-EG", {

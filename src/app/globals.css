@@ -10,23 +10,26 @@
   --font-sans: var(--font-tajawal), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --font-heading: var(--font-tajawal), ui-sans-serif, system-ui, sans-serif;
-  /* Palestinian musakhan: soil brown, heritage lime (#C3D300), sumac (#8C3048) */
-  --color-olive: #4a5630; /* olive-grove / bottle green, muted */
-  --color-olive-deep: #3a4426; /* shadow olive for stripes & depth */
-  --color-cream: #e2d8c8; /* warm stoneware, less yellow */
-  --color-earth: #3f2a1a; /* rich soil brown, primary anchor */
-  --color-gold: #b8945c; /* warm harvest gold — readable accents */
-  --color-parchment: #ebe3d6; /* clay-khadi paper */
-  /* Brand: vibrant olive-oil / lime accent */
-  --color-heritage: #c3d300;
-  --color-heritage-muted: #a8b82e;
-  /* Sumac — signature burgundy */
-  --color-sumac: #8c3048;
-  --color-sumac-deep: #6e2639;
-  --color-sumac-muted: #a84860;
-  /* Passport / booklet cover tone from festival graphics */
-  --color-passport: #1e2f4a;
-  --color-passport-deep: #152238;
+  /* Palestinian musakhan — premium palette */
+  --color-olive: #4d3d46; /* muted plum-brown for embroidery stripes */
+  --color-olive-deep: #3d2f36;
+  --color-cream: #f7f5f0; /* poster: warm off-white */
+  --color-earth: #3d2433; /* readable body text — warm ink */
+  --color-gold: #a67c52; /* warm harvest accent */
+  --color-parchment: #eef1ea; /* poster: soft sage-cream */
+  --color-wood: #5c4a3e; /* warm wood undertone (poster table) */
+  /* Accent — olive/lime highlight */
+  --color-heritage: #babf1f;
+  --color-heritage-muted: #9fa32a;
+  /* Deep main tone — burgundy */
+  --color-sumac: #592a44;
+  --color-sumac-deep: #452234;
+  --color-sumac-muted: #7a3d56;
+  /* Soft supporting — blush rose */
+  --color-blush: #d9b0c6;
+  /* Passport / booklet cover */
+  --color-passport: #3d2438;
+  --color-passport-deep: #2a1822;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -160,20 +163,31 @@
     background:
       radial-gradient(
         circle at 14% 18%,
-        rgba(195, 211, 0, 0.18),
-        transparent 30%
+        rgba(186, 191, 31, 0.18),
+        transparent 32%
       ),
       radial-gradient(
-        circle at 82% 16%,
-        rgba(140, 48, 72, 0.16),
+        circle at 82% 12%,
+        rgba(89, 42, 68, 0.1),
         transparent 28%
       ),
       radial-gradient(
-        circle at 50% 78%,
-        rgba(133, 92, 54, 0.18),
-        transparent 34%
+        circle at 50% 100%,
+        rgba(92, 74, 62, 0.08),
+        transparent 42%
       ),
-      linear-gradient(135deg, #f5ecdf 0%, #eadbc5 48%, #dfc4a4 100%);
+      radial-gradient(
+        circle at 50% 78%,
+        rgba(217, 176, 198, 0.16),
+        transparent 40%
+      ),
+      linear-gradient(
+        165deg,
+        #f4f1eb 0%,
+        #ebe8e2 38%,
+        #e8ebe4 55%,
+        #e6e3de 100%
+      );
     overflow: hidden;
   }
 
@@ -185,18 +199,18 @@
     background:
       radial-gradient(
         circle at 25% 35%,
-        rgba(195, 211, 0, 0.08),
-        transparent 34%
+        rgba(186, 191, 31, 0.08),
+        transparent 36%
       ),
       radial-gradient(
         circle at 70% 60%,
-        rgba(140, 48, 72, 0.09),
-        transparent 32%
+        rgba(89, 42, 68, 0.07),
+        transparent 34%
       ),
       radial-gradient(
         circle at 52% 22%,
-        rgba(92, 60, 36, 0.08),
-        transparent 28%
+        rgba(89, 42, 68, 0.05),
+        transparent 30%
       );
     animation: musakhanAtmosphereFloat 16s ease-in-out infinite alternate;
   }
@@ -209,11 +223,65 @@
     opacity: 0.14;
     background-image:
       linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-      radial-gradient(rgba(63, 42, 26, 0.06) 0.7px, transparent 0.7px);
+      radial-gradient(rgba(61, 36, 51, 0.05) 0.7px, transparent 0.7px);
     background-size:
       100% 100%,
       18px 18px;
     mix-blend-mode: multiply;
+  }
+
+  /**
+   * Story section: #BABF1F poster “field” (reference art) — heritage base,
+   * plum + blush depth, bright top highlight. Cream wash is layered in TSX.
+   */
+  .bg-story-heritage {
+    position: relative;
+    background:
+      radial-gradient(
+        ellipse 95% 55% at 50% -5%,
+        rgba(255, 252, 248, 0.5) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 0% 100%,
+        rgba(89, 42, 68, 0.12) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 65% 45% at 100% 85%,
+        rgba(217, 176, 198, 0.28) 0%,
+        transparent 48%
+      ),
+      linear-gradient(172deg, #cdd232 0%, #babf1f 40%, #a6ab1b 100%);
+    overflow: hidden;
+  }
+
+  .bg-story-heritage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        circle at 22% 38%,
+        rgba(255, 255, 255, 0.14),
+        transparent 38%
+      ),
+      radial-gradient(
+        circle at 78% 18%,
+        rgba(26, 26, 26, 0.04),
+        transparent 32%
+      );
+  }
+
+  .bg-story-heritage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
   }
 
   @keyframes musakhanAtmosphereFloat {
@@ -227,22 +295,117 @@
       transform: translate3d(12px, -8px, 0) scale(1);
     }
   }
-  /** Tatreez-inspired horizontal band (olive / cream / ink — embroidery feel) */
+  /** Poster-style horizontal tatreez (black · heritage · plum) */
   .tatreez-band {
     background-image: repeating-linear-gradient(
       90deg,
-      var(--color-olive) 0px,
-      var(--color-olive) 4px,
-      color-mix(in srgb, var(--color-heritage) 55%, var(--color-olive)) 4px,
-      color-mix(in srgb, var(--color-heritage) 55%, var(--color-olive)) 6px,
-      var(--color-parchment) 6px,
-      var(--color-parchment) 10px,
-      var(--color-earth) 10px,
-      var(--color-earth) 12px,
-      var(--color-olive) 12px,
-      var(--color-olive) 16px
+      #1a1a1a 0px,
+      #1a1a1a 3px,
+      var(--color-heritage) 3px,
+      var(--color-heritage) 5px,
+      #1a1a1a 5px,
+      #1a1a1a 7px,
+      var(--color-sumac-deep) 7px,
+      var(--color-sumac-deep) 9px,
+      var(--color-blush) 9px,
+      var(--color-blush) 11px,
+      #1a1a1a 11px,
+      #1a1a1a 14px
     );
-    background-size: 16px 100%;
+    background-size: 14px 100%;
+  }
+
+  /** Framed story column — vertical tatreez strips (poster borders) */
+  .story-poster-frame {
+    position: relative;
+    padding-inline: clamp(1rem, 5vw, 3rem);
+    padding-block: clamp(1.5rem, 4vw, 2.75rem);
+  }
+
+  .story-poster-frame::before,
+  .story-poster-frame::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: clamp(10px, 3vw, 16px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .story-poster-frame::before {
+    inset-inline-start: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      #1a1a1a 0px,
+      #1a1a1a 4px,
+      var(--color-heritage) 4px,
+      var(--color-heritage) 8px,
+      #1a1a1a 8px,
+      #1a1a1a 12px,
+      #2d2d2d 12px,
+      #2d2d2d 16px
+    );
+    opacity: 0.92;
+  }
+
+  .story-poster-frame::after {
+    inset-inline-end: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      var(--color-sumac-deep) 0px,
+      var(--color-sumac-deep) 4px,
+      var(--color-sumac) 4px,
+      var(--color-sumac) 7px,
+      var(--color-blush) 7px,
+      var(--color-blush) 10px,
+      var(--color-sumac-muted) 10px,
+      var(--color-sumac-muted) 14px
+    );
+    opacity: 0.9;
+  }
+
+  /** Printed menu sheet — blush field, plum ink (reference menus) */
+  .menu-printed-sheet {
+    position: relative;
+    background:
+      radial-gradient(
+        ellipse 80% 55% at 50% 0%,
+        rgba(255, 252, 254, 0.35) 0%,
+        transparent 52%
+      ),
+      linear-gradient(180deg, #e8c9d8 0%, #d9b0c6 38%, #d4aac0 100%);
+    box-shadow:
+      0 1px 0 rgba(255, 253, 248, 0.65) inset,
+      0 28px 60px -28px rgba(89, 42, 68, 0.35),
+      0 12px 32px -18px rgba(42, 24, 34, 0.12);
+  }
+
+  .menu-printed-sheet::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  /** Subtle “highlighter” bars behind description lines (printed menu) */
+  .menu-desc-bars {
+    background-image:
+      linear-gradient(
+        transparent 0.15em,
+        rgba(89, 42, 68, 0.07) 0.15em,
+        rgba(89, 42, 68, 0.07) 0.42em,
+        transparent 0.42em
+      ),
+      linear-gradient(
+        transparent 0.58em,
+        rgba(89, 42, 68, 0.055) 0.58em,
+        rgba(89, 42, 68, 0.055) 0.78em,
+        transparent 0.78em
+      );
   }
 
   .tatreez-band-thin {
@@ -269,7 +432,7 @@
   /* Optional: elegant themed scrollbar */
   .scrollbar-musakhan {
     scrollbar-width: thin;
-    scrollbar-color: rgba(140, 48, 72, 0.75) rgba(63, 42, 26, 0.08);
+    scrollbar-color: rgba(89, 42, 68, 0.75) rgba(61, 36, 51, 0.08);
   }
 
   .scrollbar-musakhan::-webkit-scrollbar {
@@ -277,15 +440,15 @@
   }
 
   .scrollbar-musakhan::-webkit-scrollbar-track {
-    background: rgba(63, 42, 26, 0.06);
+    background: rgba(61, 36, 51, 0.06);
     border-radius: 999px;
   }
 
   .scrollbar-musakhan::-webkit-scrollbar-thumb {
     background: linear-gradient(
       to bottom,
-      rgba(195, 211, 0, 0.95),
-      rgba(140, 48, 72, 0.9)
+      rgba(186, 191, 31, 0.95),
+      rgba(89, 42, 68, 0.9)
     );
     border-radius: 999px;
     border: 2px solid transparent;
@@ -295,8 +458,8 @@
   .scrollbar-musakhan::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(
       to bottom,
-      rgba(195, 211, 0, 1),
-      rgba(140, 48, 72, 1)
+      rgba(186, 191, 31, 1),
+      rgba(89, 42, 68, 1)
     );
   }
   /** Subtle paper grain for “document” surfaces */
@@ -354,41 +517,6 @@
     .animate-hero-float-delayed,
     .animate-hero-glow {
       animation: none;
-    }
-  }
-
-  /* Booking: 3D flip between steps (respect reduced motion via component) */
-  .booking-flip-perspective {
-    perspective: 1400px;
-  }
-
-  .booking-flip-inner {
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .booking-flip-inner[data-step="2"] {
-    transform: rotateY(180deg);
-  }
-
-  .booking-flip-face {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-
-  .booking-flip-face--back {
-    transform: rotateY(180deg);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .booking-flip-inner {
-      transition: none;
-    }
-    .booking-flip-inner[data-step="2"] {
-      transform: none;
-    }
-    .booking-flip-face--back {
-      transform: none;
     }
   }
 

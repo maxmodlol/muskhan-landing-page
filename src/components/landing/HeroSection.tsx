@@ -1,49 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import * as React from "react";
 import { ChevronDown } from "lucide-react";
 import { SectionContainer } from "@/components/landing/SectionContainer";
-import { cn } from "@/lib/utils";
-
-/** Real olive branch — editorial crop, soft blend into hero */
-const OLIVE_BRANCH_SRC =
-  "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=720&q=85";
-
-function FloatingOliveBranch({
-  className,
-  flip,
-}: {
-  className?: string;
-  flip?: boolean;
-}) {
-  return (
-    <div
-      className={cn(
-        "pointer-events-none absolute z-[1] w-[min(42vw,13.5rem)] select-none sm:w-[min(36vw,15rem)] md:w-[min(32vw,17rem)]",
-        flip ? "animate-hero-float-delayed" : "animate-hero-float",
-        className,
-      )}
-      aria-hidden
-    >
-      <div
-        className={cn(
-          "relative aspect-[3/5] w-full drop-shadow-[0_12px_28px_rgba(63,42,26,0.22)]",
-          flip && "scale-x-[-1]",
-        )}
-      >
-        <Image
-          src={OLIVE_BRANCH_SRC}
-          alt=""
-          fill
-          sizes="(max-width: 768px) 42vw, 272px"
-          className="object-cover object-[center_35%] contrast-[1.03] saturate-[0.92] [mask-image:linear-gradient(105deg,black_42%,transparent_100%)] [-webkit-mask-image:linear-gradient(105deg,black_42%,transparent_100%)]"
-        />
-      </div>
-    </div>
-  );
-}
+import { StampCtaLink } from "@/components/landing/StampCtaLink";
 
 export function HeroSection() {
   const [parallax, setParallax] = React.useState({ x: 0, y: 0 });
@@ -100,17 +61,17 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[2] bg-linear-to-b from-parchment/50 via-cream/15 to-earth/55" />
+      <div className="pointer-events-none absolute inset-0 z-[2] bg-linear-to-b from-parchment/55 via-cream/12 to-[rgba(92,74,62,0.38)]" />
       <div
-        className="animate-hero-glow pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_90%_50%_at_50%_18%,rgba(195,211,0,0.14)_0%,transparent_58%)]"
+        className="animate-hero-glow pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_90%_50%_at_50%_18%,rgba(186,191,31,0.16)_0%,transparent_58%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_70%_45%_at_80%_85%,rgba(140,48,72,0.12)_0%,transparent_50%)]"
+        className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_70%_45%_at_80%_85%,rgba(89,42,68,0.14)_0%,transparent_50%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_60%_40%_at_15%_75%,rgba(140,48,72,0.1)_0%,transparent_48%)]"
+        className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_60%_40%_at_15%_75%,rgba(217,176,198,0.12)_0%,transparent_48%)]"
         aria-hidden
       />
 
@@ -119,11 +80,11 @@ export function HeroSection() {
           <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center lg:max-w-5xl">
             <div className="mb-3 flex items-center justify-center gap-2 sm:mb-4">
               <span className="h-px w-14 bg-gradient-to-l from-transparent via-heritage/70 to-sumac/40 sm:w-20" />
-              <span className="size-2 shrink-0 rotate-45 border border-heritage/80 bg-musakhan-atmosphere/95 shadow-[0_0_0_1px_rgba(140,48,72,0.2)]" />
+              <span className="size-2 shrink-0 rotate-45 border border-heritage/80 bg-musakhan-atmosphere/95 shadow-[0_0_0_1px_rgba(89,42,68,0.22)]" />
               <span className="h-px w-14 bg-gradient-to-r from-transparent via-heritage/70 to-sumac/40 sm:w-20" />
             </div>
 
-            <div className="rounded-full border border-heritage/45 bg-cream/92 px-5 py-2 text-xs font-bold tracking-wide text-earth shadow-[0_10px_32px_-14px_rgba(140,48,72,0.35)] ring-1 ring-sumac/20 backdrop-blur-md sm:px-7 sm:text-sm md:text-base">
+            <div className="rounded-full border border-heritage/45 bg-cream/92 px-5 py-2 text-xs font-bold tracking-wide text-earth shadow-[0_10px_32px_-14px_rgba(89,42,68,0.32)] ring-1 ring-sumac/20 backdrop-blur-md sm:px-7 sm:text-sm md:text-base">
               <span className="text-sumac-deep">عين القدس</span>
               <span className="mx-2 text-earth/35" aria-hidden>
                 ·
@@ -131,7 +92,7 @@ export function HeroSection() {
               <span className="text-olive">مهرجان المسخن</span>
             </div>
 
-            <h1 className="font-heading mt-5 max-w-[14ch] text-balance text-[clamp(2rem,6.5vw,4.75rem)] font-extrabold leading-[1.04] tracking-tight text-earth [text-shadow:0_1px_0_rgba(255,253,248,0.92),0_0_24px_rgba(235,227,214,0.5)] sm:mt-6 sm:max-w-none sm:text-[clamp(2.65rem,5.2vw,5.25rem)]">
+            <h1 className="font-heading mt-5 max-w-[14ch] text-balance text-[clamp(2rem,6.5vw,4.75rem)] font-extrabold leading-[1.04] tracking-tight text-sumac-deep [text-shadow:0_1px_0_rgba(255,253,248,0.92),0_0_24px_rgba(235,227,214,0.5)] sm:mt-6 sm:max-w-none sm:text-[clamp(2.65rem,5.2vw,5.25rem)]">
               مهرجان المسخن الفلسطيني
             </h1>
 
@@ -149,12 +110,16 @@ export function HeroSection() {
               </span>
             </div>
 
-            <Link
-              href="#booking"
-              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-linear-to-l from-sumac via-sumac-deep to-olive-deep px-10 py-3.5 text-sm font-bold text-cream shadow-[0_18px_44px_-14px_rgba(140,48,72,0.55),0_0_0_1px_rgba(195,211,0,0.25)] ring-2 ring-heritage/50 ring-offset-2 ring-offset-transparent transition hover:brightness-[1.04] hover:ring-heritage/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream/90 sm:mt-8 sm:min-h-[3.25rem] sm:px-12 sm:text-base"
-            >
-              احجز تجربتك الآن
-            </Link>
+            <div className="mt-7 flex flex-col items-center gap-2 sm:mt-8">
+              <StampCtaLink
+                href="#booking"
+                label="احجز تجربتك — الانتقال إلى نموذج الحجز وقائمة الطعام"
+                caption="احجز تجربتك"
+              />
+              <p className="text-center text-[0.7rem] font-semibold text-white/95 [text-shadow:0_1px_3px_rgba(0,0,0,0.45)] sm:text-xs">
+                اختر الأصناف ثم أكمِل الحجز
+              </p>
+            </div>
           </div>
         </div>
 
@@ -163,10 +128,10 @@ export function HeroSection() {
           className="group relative z-20 mx-auto mt-auto flex flex-col items-center gap-2 rounded-2xl px-4 py-2 transition sm:pb-2"
           aria-label="انتقل للأسفل"
         >
-          <span className="text-center text-sm font-bold tracking-wide text-earth md:text-base">
+          <span className="text-center text-sm font-bold tracking-wide text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.45)] md:text-base">
             اكتشف المزيد
           </span>
-          <span className="flex size-7 shrink-0 items-center justify-center rounded-full border-2 border-heritage/55 bg-cream/95 text-sumac-deep shadow-[0_6px_20px_-6px_rgba(140,48,72,0.35)] transition group-hover:border-heritage group-hover:bg-cream group-hover:text-sumac md:size-8">
+          <span className="flex size-7 shrink-0 items-center justify-center rounded-full border-2 border-heritage/55 bg-cream/95 text-sumac-deep shadow-[0_6px_20px_-6px_rgba(89,42,68,0.32)] transition group-hover:border-heritage group-hover:bg-cream group-hover:text-sumac md:size-8">
             <ChevronDown
               className="size-4 stroke-[1.5] transition group-hover:translate-y-0.5"
               aria-hidden
