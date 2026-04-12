@@ -36,6 +36,7 @@ export function LoyaltyVideoFrame({
           <iframe
             src={embedUrl}
             title={title}
+            loading="lazy"
             className="absolute inset-0 size-full rounded-[inherit]"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
