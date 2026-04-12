@@ -5,7 +5,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     <div
       dir="rtl"
       lang="ar"
-      className="min-h-screen bg-musakhan-atmosphere text-earth"
+      className="min-h-screen bg-musakhan-atmosphere text-sumac-deep"
     >
       {children}
     </div>

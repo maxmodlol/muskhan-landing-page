@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
  */
 export function SectionDivider({ className }: { className?: string }) {
   const tileBar =
-    "h-2.5 flex-1 max-w-[44%] rounded-[1px] bg-[repeating-linear-gradient(90deg,rgba(124,130,42,0.92)_0px,rgba(124,130,42,0.92)_5px,transparent_5px,transparent_7px)] shadow-[inset_0_-1px_0_rgba(0,0,0,0.06)] sm:h-3 sm:max-w-[46%]";
+    "h-2.5 flex-1 max-w-[44%] rounded-[1px] bg-[repeating-linear-gradient(90deg,rgba(89,42,68,0.55)_0px,rgba(89,42,68,0.55)_4px,rgba(186,191,31,0.75)_4px,rgba(186,191,31,0.75)_6px,transparent_6px,transparent_8px)] shadow-[inset_0_-1px_0_rgba(0,0,0,0.06)] sm:h-3 sm:max-w-[46%]";
 
   return (
     <div

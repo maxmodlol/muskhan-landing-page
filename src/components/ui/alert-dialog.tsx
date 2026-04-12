@@ -19,7 +19,7 @@ function AlertDialogBackdrop({
     <AlertDialogPrimitive.Backdrop
       data-slot="alert-dialog-backdrop"
       className={cn(
-        "fixed inset-0 z-50 bg-earth/40 backdrop-blur-[2px] transition-opacity data-closed:opacity-0 data-open:opacity-100",
+        "fixed inset-0 z-50 bg-sumac-deep/40 backdrop-blur-[2px] transition-opacity data-closed:opacity-0 data-open:opacity-100",
         className,
       )}
       {...props}
@@ -51,7 +51,7 @@ function AlertDialogPopup({
     <AlertDialogPrimitive.Popup
       data-slot="alert-dialog-popup"
       className={cn(
-        "relative z-50 w-full max-w-md origin-center rounded-2xl border border-earth/12 bg-musakhan-atmosphere p-6 text-right shadow-[0_24px_48px_-12px_rgba(63,42,26,0.28)] ring-1 ring-gold/15 transition-[opacity,transform] data-closed:scale-95 data-closed:opacity-0 data-open:scale-100 data-open:opacity-100",
+        "relative z-50 w-full max-w-md origin-center rounded-2xl border border-sumac/15 bg-musakhan-atmosphere p-6 text-right shadow-[0_24px_48px_-12px_rgba(89,42,68,0.22)] ring-1 ring-sumac/15 transition-[opacity,transform] data-closed:scale-95 data-closed:opacity-0 data-open:scale-100 data-open:opacity-100",
         className,
       )}
       {...props}
@@ -115,7 +115,7 @@ function AlertDialogTitle({
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
       className={cn(
-        "font-heading text-lg font-extrabold text-olive sm:text-xl",
+        "font-heading text-lg font-extrabold text-sumac-deep sm:text-xl",
         className,
       )}
       {...props}
@@ -130,7 +130,7 @@ function AlertDialogDescription({
   return (
     <AlertDialogPrimitive.Description
       data-slot="alert-dialog-description"
-      className={cn("text-sm leading-relaxed text-earth/80", className)}
+      className={cn("text-sm leading-relaxed text-sumac-deep/80", className)}
       {...props}
     />
   );
@@ -144,7 +144,7 @@ function AlertDialogCancel({
     <AlertDialogPrimitive.Close
       data-slot="alert-dialog-cancel"
       className={cn(
-        "inline-flex h-10 w-full items-center justify-center rounded-full border border-earth/20 bg-cream/90 px-4 text-sm font-semibold text-earth shadow-sm transition hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 sm:w-auto sm:min-w-[7rem]",
+        "inline-flex h-10 w-full items-center justify-center rounded-full border border-sumac/25 bg-cream/90 px-4 text-sm font-semibold text-sumac-deep shadow-sm transition hover:bg-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-heritage/40 sm:w-auto sm:min-w-[7rem]",
         className,
       )}
       {...props}

@@ -29,7 +29,7 @@ function parseOrderLines(raw: string | null | undefined): OrderLine[] | null {
 export function MenuOrderCell({ raw }: { raw: string | null | undefined }) {
   const lines = parseOrderLines(raw);
   if (!lines?.length) {
-    return <span className="text-earth/50">—</span>;
+    return <span className="text-sumac-deep/50">—</span>;
   }
   const total = lines.reduce(
     (s, l) => s + parseMenuPriceToNumber(l.price) * l.qty,
@@ -43,11 +43,11 @@ export function MenuOrderCell({ raw }: { raw: string | null | undefined }) {
           return (
             <li
               key={`${l.id}-${l.qty}-${l.price}`}
-              className="rounded-lg border border-earth/12 bg-musakhan-atmosphere/80 px-2.5 py-2"
+              className="rounded-lg border border-sumac/12 bg-musakhan-atmosphere/80 px-2.5 py-2"
             >
-              <p className="font-semibold text-earth">{l.name}</p>
+              <p className="font-semibold text-sumac-deep">{l.name}</p>
               <div
-                className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[0.7rem] text-earth/75"
+                className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[0.7rem] text-sumac-deep/75"
                 dir="ltr"
               >
                 <span>{l.price}</span>
@@ -61,7 +61,7 @@ export function MenuOrderCell({ raw }: { raw: string | null | undefined }) {
         })}
       </ul>
       <p
-        className="border-t border-earth/15 pt-1.5 font-heading text-[0.8rem] font-extrabold text-olive"
+        className="border-t border-sumac/15 pt-1.5 font-heading text-[0.8rem] font-extrabold text-sumac-deep"
         dir="ltr"
       >
         المجموع {toEasternArabicNumerals(String(total))} ₪

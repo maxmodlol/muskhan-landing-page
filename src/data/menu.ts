@@ -1,7 +1,6 @@
 /**
  * Festival menu — copy aligned with printed menu references (عين القدس).
  * `price` uses Western digits + ₪ like the reference menus.
- * `image` optional: shown as a small accent when present.
  */
 export type MenuItemRecord = {
   id: string;
@@ -9,7 +8,6 @@ export type MenuItemRecord = {
   /** e.g. "85 ₪" */
   price: string;
   description?: string;
-  image?: string;
   /** Highlighted combo row */
   featured?: boolean;
   /** Combo bullets */
@@ -47,7 +45,6 @@ export const MENU_ITEMS: readonly MenuItemRecord[] = [
     name: "كومبو مسخن (لشخصين)",
     price: "190 ₪",
     description: "نصف دجاجة مسخن، رولان مسخن، فتة مسخن",
-    image: "/offer.jpg",
     featured: true,
     featuredIncludes: ["نصف دجاجة مسخن", "رولان مسخن", "فتة مسخن"],
   },
@@ -57,56 +54,48 @@ export const MENU_ITEMS: readonly MenuItemRecord[] = [
     price: "85 ₪",
     description:
       "نصف دجاج على خبز الطابون عين القدس، بصل وسماق تشويح بزيت الزيتون",
-    image: "/مسخن_قدسي.jpeg",
   },
   {
     id: "fatta",
     name: "فتة مسخن",
     price: "58 ₪",
     description: "خبز طابون محمص، لبن بالثوم، بصل وسماق، قطع دجاج مسخن",
-    image: "/فتة_مسخن.jpeg",
   },
   {
     id: "steak",
     name: "ستيك مسخن",
     price: "69 ₪",
     description: "ستيك دجاج مسخن على خبزة عين القدس مع بصل وسماق وزيت زيتون",
-    image: "/ستيك_مسخن.jpeg",
   },
   {
     id: "roll",
     name: "مسخن رول",
     price: "48 ₪",
     description: "رولات شراك محشوة بدجاج مع بصل وسماق تشويح بزيت الزيتون",
-    image: "/مسخن_رول.jpeg",
   },
   {
     id: "pizza",
     name: "بيتزا مسخن",
     price: "55 ₪",
     description: "عجينة طازجة، دجاج مسخن، بصل وسماق",
-    image: "/بيتزا_مسخن.jpeg",
   },
   {
     id: "calzone",
     name: "كلزوني مسخن",
     price: "52 ₪",
     description: "عجينة محشية، دجاج مسخن مع بصل وسماق",
-    image: "/كلزوني_مسخن.jpeg",
   },
   {
     id: "salad",
     name: "سلطة المسخن",
     price: "42 ₪",
     description: "خس طازج، قطع دجاج مسخن، خبز محمص بالسماق، وصلصة لبن",
-    image: "/سلطة_مسخن.jpeg",
   },
   {
     id: "kebab",
     name: "كباب مسخن",
     price: "98 ₪",
     description: "كباب دجاج مع بصل وسماق وزيت زيتون، مغطى بعجينة مخبوزة",
-    image: "/كباب_مسخن.jpeg",
   },
   {
     id: "fettuccine",
@@ -119,7 +108,6 @@ export const MENU_ITEMS: readonly MenuItemRecord[] = [
     name: "بيرجر مسخن",
     price: "65 ₪",
     description: "صدر دجاج مشوي مع بصل وسماق وزيت زيتون، ملفوف بعجينة مخبوزة",
-    image: "/بيرغر_مسخن.jpeg",
   },
 ] as const;
 

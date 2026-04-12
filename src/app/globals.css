@@ -142,20 +142,23 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-parchment text-earth font-sans;
+    @apply font-sans text-sumac-deep;
   }
   html {
     @apply font-sans;
+    /* One vertical scrollbar for the whole document (not per-section). */
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
   }
 }
 
 @layer components {
   /* Shared landing form controls — warm Musakhan palette */
   .landing-input {
-    @apply h-12 w-full rounded-xl border border-earth/18 bg-cream/95 px-4 text-base text-earth shadow-[inset_0_1px_2px_rgba(63,42,26,0.06)] transition-colors placeholder:text-earth/40 focus-visible:border-sumac/45 focus-visible:ring-2 focus-visible:ring-sumac/15 focus-visible:outline-none;
+    @apply h-12 w-full rounded-xl border border-sumac/20 bg-cream/95 px-4 text-base text-sumac-deep shadow-[inset_0_1px_2px_rgba(89,42,68,0.06)] transition-colors placeholder:text-sumac-deep/40 focus-visible:border-sumac/45 focus-visible:ring-2 focus-visible:ring-sumac/15 focus-visible:outline-none;
   }
   .landing-textarea {
-    @apply min-h-28 w-full rounded-xl border border-earth/18 bg-cream/95 px-4 py-3 text-base text-earth shadow-[inset_0_1px_2px_rgba(63,42,26,0.06)] transition-colors placeholder:text-earth/40 focus-visible:border-sumac/45 focus-visible:ring-2 focus-visible:ring-sumac/15 focus-visible:outline-none;
+    @apply min-h-28 w-full rounded-xl border border-sumac/20 bg-cream/95 px-4 py-3 text-base text-sumac-deep shadow-[inset_0_1px_2px_rgba(89,42,68,0.06)] transition-colors placeholder:text-sumac-deep/40 focus-visible:border-sumac/45 focus-visible:ring-2 focus-visible:ring-sumac/15 focus-visible:outline-none;
   }
 
   .bg-musakhan-atmosphere {
@@ -389,6 +392,14 @@
     opacity: 0.12;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
     mix-blend-mode: multiply;
+  }
+
+  /**
+   * Inner strips / nested boxes — same treatment as the intro title box inside the menu
+   * (border-2 border-sumac/35 bg-white/30 + inset highlight + plum ink).
+   */
+  .surface-menu-callout {
+    @apply border-2 border-sumac/35 bg-white/30 text-sumac-deep shadow-[inset_0_1px_0_rgba(255,253,248,0.65)];
   }
 
   .tatreez-band-thin {

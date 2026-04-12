@@ -38,7 +38,7 @@ export function LoyaltySection() {
           <p className="font-heading text-lg font-bold leading-snug text-sumac-deep sm:text-xl md:text-2xl [text-shadow:0_1px_0_rgba(255,253,248,0.45)]">
             سافر في ذواقة القدس الأصيلة
           </p>
-          <p className="mt-3 text-sm font-medium leading-relaxed text-earth/90 sm:text-base md:text-lg">
+          <p className="mt-3 text-sm font-medium leading-relaxed text-sumac-deep/88 sm:text-base md:text-lg">
             جواز سفر المسخن — خمسة أختام، ثم هدية من المطبخ
           </p>
         </header>
@@ -54,19 +54,19 @@ export function LoyaltySection() {
               className="absolute inset-0 rounded-sm bg-linear-to-b from-passport-deep/35 to-transparent opacity-50"
               aria-hidden
             />
-            <div className="relative bg-[#f3ebe4] paper-grain">
-              <div className="border-b-2 border-earth/15 border-double px-4 py-3 sm:px-6 sm:py-4">
-                <p className="text-center font-heading text-base font-extrabold tracking-wide text-earth sm:text-lg">
+            <div className="menu-printed-sheet relative z-0 overflow-hidden text-sumac-deep">
+              <div className="relative z-[1] border-b-2 border-sumac/15 border-double px-4 py-3 sm:px-6 sm:py-4">
+                <p className="text-center font-heading text-base font-extrabold tracking-wide text-sumac-deep sm:text-lg">
                   جواز سفر المسخن
                 </p>
-                <p className="mt-1 text-center text-[0.65rem] font-medium text-earth/55 sm:text-xs">
+                <p className="mt-1 text-center text-[0.65rem] font-medium text-sumac-deep/55 sm:text-xs">
                   Musakhan Passport · عين القدس
                 </p>
               </div>
 
-              <div className="grid gap-6 px-4 py-6 sm:gap-8 sm:px-6 sm:py-8 md:grid-cols-2 md:gap-10 md:py-10">
-                <div className="flex flex-col justify-center border-earth/20 text-right md:border-l md:border-double md:pl-8">
-                  <p className="text-sm leading-[1.85] text-earth/92 sm:text-base">
+              <div className="relative z-[1] grid gap-6 px-4 py-6 sm:gap-8 sm:px-6 sm:py-8 md:grid-cols-2 md:gap-10 md:py-10">
+                <div className="flex flex-col justify-center border-sumac/20 text-right md:border-l md:border-double md:pl-8">
+                  <p className="text-sm leading-[1.85] text-sumac-deep/92 sm:text-base">
                     يحمل حامل هذا الجواز، بعد جمع{" "}
                     <span className="font-bold text-sumac-deep">
                       خمسة أختام
@@ -77,14 +77,14 @@ export function LoyaltySection() {
                     </span>{" "}
                     صالحة لمدة شهر كامل.
                   </p>
-                  <p className="mt-4 text-xs leading-relaxed text-earth/70 sm:text-sm">
+                  <p className="mt-4 text-xs leading-relaxed text-sumac-deep/70 sm:text-sm">
                     الأختام توثّق مشاركتك في المهرجان — كختم على صفحة من رحلة
                     الذوق.
                   </p>
                 </div>
 
                 <div>
-                  <p className="mb-4 text-center font-heading text-sm font-bold text-earth sm:mb-5 sm:text-base">
+                  <p className="mb-4 text-center font-heading text-sm font-bold text-sumac-deep sm:mb-5 sm:text-base">
                     أختام الرحلة
                   </p>
                   <div className="flex flex-row-reverse flex-wrap items-center justify-center gap-3 sm:gap-4">
@@ -92,7 +92,7 @@ export function LoyaltySection() {
                       <div
                         key={n}
                         className={cn(
-                          "flex size-12 items-center justify-center rounded-full border-[2.5px] border-dashed border-earth/35 bg-[#ebe4dc]/95 text-sm font-bold text-earth/50 sm:size-14",
+                          "flex size-12 items-center justify-center rounded-full border-[2.5px] border-dashed border-sumac/35 bg-parchment/85 text-sm font-bold text-sumac-deep/50 sm:size-14",
                           n === 3 &&
                             "border-0 border-solid bg-sumac text-cream shadow-[0_4px_14px_-2px_rgba(89,42,68,0.45)] ring-2 ring-heritage/50",
                         )}
@@ -106,15 +106,15 @@ export function LoyaltySection() {
                       </div>
                     ))}
                   </div>
-                  <p className="mt-5 text-center text-[0.7rem] text-earth/55 sm:text-xs">
+                  <p className="mt-5 text-center text-[0.7rem] text-sumac-deep/55 sm:text-xs">
                     مثال: الختم الثالث مكتمل — الباقي في انتظار زياراتك
                   </p>
                 </div>
               </div>
 
-              <div className="mx-4 mb-6 border-t border-earth/15 border-dashed sm:mx-6" />
+              <div className="relative z-[1] mx-4 mb-6 border-t border-sumac/15 border-dashed sm:mx-6" />
 
-              <div className="mx-4 mb-6 flex justify-center sm:mx-8">
+              <div className="relative z-[1] mx-4 mb-6 flex justify-center sm:mx-8">
                 <div className="border-2 border-heritage/40 bg-sumac px-8 py-4 text-center text-cream shadow-[inset_0_2px_0_rgba(255,253,248,0.12)] ring-1 ring-sumac-deep/35 sm:px-10">
                   <p className="text-xs font-semibold uppercase tracking-wider text-cream/90">
                     المكافأة
@@ -126,27 +126,27 @@ export function LoyaltySection() {
                 </div>
               </div>
 
-              <p className="pb-6 text-center font-mono text-[0.6rem] text-earth/40 sm:text-[0.65rem]">
+              <p className="relative z-[1] pb-6 text-center font-mono text-[0.6rem] text-sumac-deep/40 sm:text-[0.65rem]">
                 ‎MP‑JRS‑2026 · عين القدس
               </p>
             </div>
           </div>
 
           <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6">
-            <div className="border-y-4 border-earth/18 border-double bg-cream/55 px-4 py-5 text-right shadow-[inset_0_1px_0_rgba(255,253,248,0.65)] backdrop-blur-[1px] sm:px-5 sm:py-6">
+            <div className="surface-menu-callout rounded-sm px-4 py-5 text-right sm:px-5 sm:py-6">
               <p className="font-heading text-base font-bold text-sumac-deep sm:text-lg">
                 كيف يُجمع الختم؟
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-earth/88 sm:text-base">
+              <p className="mt-2 text-sm leading-relaxed text-sumac-deep/88 sm:text-base">
                 كل طلب مسخن مؤكّد أو حضور في موعد المهرجان = ختم واحد يدوَّن لك
                 عند الاستلام أو التسليم.
               </p>
             </div>
-            <div className="border-y-4 border-earth/18 border-double bg-cream/55 px-4 py-5 text-right shadow-[inset_0_1px_0_rgba(255,253,248,0.65)] backdrop-blur-[1px] sm:px-5 sm:py-6">
+            <div className="surface-menu-callout rounded-sm px-4 py-5 text-right sm:px-5 sm:py-6">
               <p className="font-heading text-base font-bold text-sumac-deep sm:text-lg">
                 متى تستلم البطاقة؟
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-earth/88 sm:text-base">
+              <p className="mt-2 text-sm leading-relaxed text-sumac-deep/88 sm:text-base">
                 بعد الختم الخامس نسلّمك بطاقة الخصم — تصلح لكل أصناف المسخن في
                 المهرجان طوال الشهر التالي.
               </p>
@@ -159,7 +159,7 @@ export function LoyaltySection() {
               label="ابدأ رحلتك — الانتقال إلى نموذج الحجز"
               caption="احجز الآن"
             />
-            <p className="rounded-md bg-white/85 px-2 py-1 text-center text-[0.65rem] font-semibold text-sumac-deep/90 ring-1 ring-earth/10 sm:text-xs">
+            <p className="rounded-md bg-white/80 px-2 py-1 text-center text-[0.65rem] font-semibold text-sumac-deep/90 ring-1 ring-sumac/10 sm:text-xs">
               من الطابون إلى ختمك الأول
             </p>
           </div>

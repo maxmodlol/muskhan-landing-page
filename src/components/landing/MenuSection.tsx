@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Minus, Plus } from "lucide-react";
 import { SectionContainer } from "@/components/landing/SectionContainer";
 import { StampCtaLink } from "@/components/landing/StampCtaLink";
@@ -82,28 +81,15 @@ function MenuDishRow({ item }: { item: MenuItemRecord }) {
       className="border-b border-sumac/12 pb-7 last:border-b-0 last:pb-0"
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-        <div className="flex min-w-0 flex-1 flex-col gap-3 sm:flex-row sm:gap-4">
-          {item.image ? (
-            <div className="relative mx-auto aspect-[4/3] w-full max-w-[16rem] shrink-0 overflow-hidden rounded-md border border-sumac/25 bg-parchment/90 p-1 shadow-md ring-1 ring-sumac/10 sm:mx-0 sm:max-w-[12.5rem]">
-              <Image
-                src={item.image}
-                alt=""
-                fill
-                sizes="(max-width:640px) min(100vw, 400px), 200px"
-                className="object-contain object-center"
-              />
-            </div>
+        <div className="min-w-0 flex-1 text-right">
+          <h3 className="font-heading text-lg font-bold leading-snug text-sumac-deep sm:text-xl">
+            {item.name}
+          </h3>
+          {item.description ? (
+            <p className="mt-2 max-w-xl text-pretty text-sm leading-relaxed text-sumac-deep/88 sm:text-base">
+              {item.description}
+            </p>
           ) : null}
-          <div className="min-w-0 flex-1 text-right">
-            <h3 className="font-heading text-lg font-bold leading-snug text-sumac-deep sm:text-xl">
-              {item.name}
-            </h3>
-            {item.description ? (
-              <p className="mt-2 max-w-xl text-pretty text-sm leading-relaxed text-sumac-deep/88 sm:text-base">
-                {item.description}
-              </p>
-            ) : null}
-          </div>
         </div>
         <div className="flex shrink-0 items-center justify-between gap-4 border-t border-sumac/10 pt-3 sm:flex-col sm:items-end sm:justify-start sm:border-t-0 sm:pt-0.5">
           <p
@@ -138,24 +124,7 @@ function MenuFeaturedBlock({ item }: { item: MenuItemRecord }) {
         </span>
       </div>
 
-      <div
-        dir="rtl"
-        className="flex flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-6"
-      >
-        {item.image ? (
-          <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-md border border-sumac/30 bg-parchment/90 p-1.5 shadow-[0_12px_32px_-16px_rgba(89,42,68,0.35)] ring-1 ring-sumac/15 sm:w-[min(42%,15rem)] sm:max-w-[240px]">
-            <Image
-              src={item.image}
-              alt={item.name}
-              fill
-              priority
-              sizes="(max-width:640px) 100vw, 240px"
-              className="object-contain object-center"
-            />
-          </div>
-        ) : null}
-
-        <div className="flex min-w-0 flex-1 flex-col text-right">
+      <div dir="rtl" className="flex flex-col text-right">
           <h3 className="font-heading text-xl font-extrabold leading-tight text-sumac-deep sm:text-2xl">
             {item.name}
           </h3>
@@ -221,7 +190,6 @@ function MenuFeaturedBlock({ item }: { item: MenuItemRecord }) {
               </div>
             )}
           </div>
-        </div>
       </div>
     </div>
   );

@@ -222,12 +222,12 @@ export default function AdminDashboardPage() {
         </AlertDialogContent>
       </AlertDialog>
 
-      <header className="flex flex-col gap-4 border-b border-earth/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <header className="flex flex-col gap-4 border-b border-sumac/12 pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="font-heading text-2xl font-extrabold text-olive sm:text-3xl">
+          <h1 className="font-heading text-2xl font-extrabold text-sumac-deep sm:text-3xl">
             الحجوزات
           </h1>
-          <p className="mt-1 text-sm text-earth/70">
+          <p className="mt-1 text-sm text-sumac-deep/70">
             مهرجان المسخن — لوحة التحكم
           </p>
         </div>
@@ -236,7 +236,7 @@ export default function AdminDashboardPage() {
             href="/"
             className={cn(
               buttonVariants({ variant: "outline" }),
-              "rounded-full border-earth/25 px-4",
+              "rounded-full border-sumac/25 px-4",
             )}
           >
             الموقع
@@ -244,7 +244,7 @@ export default function AdminDashboardPage() {
           <Button
             type="button"
             variant="outline"
-            className="gap-2 rounded-full border-earth/25"
+            className="gap-2 rounded-full border-sumac/25"
             onClick={() => void handleLogout()}
           >
             <LogOut className="size-4" aria-hidden />
@@ -254,7 +254,7 @@ export default function AdminDashboardPage() {
       </header>
 
       {loading ? (
-        <div className="flex min-h-[40vh] items-center justify-center gap-2 text-earth/70">
+        <div className="flex min-h-[40vh] items-center justify-center gap-2 text-sumac-deep/70">
           <Loader2 className="size-8 animate-spin" aria-hidden />
           <span>جاري التحميل…</span>
         </div>
@@ -265,44 +265,44 @@ export default function AdminDashboardPage() {
       ) : (
         <>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-earth/10 bg-cream/90 p-5 shadow-sm ring-1 ring-gold/10">
-              <p className="text-sm font-medium text-earth/70">
+            <div className="rounded-2xl border border-sumac/12 bg-cream/90 p-5 shadow-sm ring-1 ring-sumac/12">
+              <p className="text-sm font-medium text-sumac-deep/70">
                 إجمالي الحجوزات
               </p>
-              <p className="mt-2 font-heading text-3xl font-extrabold text-earth">
+              <p className="mt-2 font-heading text-3xl font-extrabold text-sumac-deep">
                 {stats?.total ?? 0}
               </p>
             </div>
-            <div className="rounded-2xl border border-earth/10 bg-cream/90 p-5 shadow-sm ring-1 ring-gold/10">
-              <p className="text-sm font-medium text-earth/70">إجمالي الضيوف</p>
-              <p className="mt-2 font-heading text-3xl font-extrabold text-earth">
+            <div className="rounded-2xl border border-sumac/12 bg-cream/90 p-5 shadow-sm ring-1 ring-sumac/12">
+              <p className="text-sm font-medium text-sumac-deep/70">إجمالي الضيوف</p>
+              <p className="mt-2 font-heading text-3xl font-extrabold text-sumac-deep">
                 {stats?.totalGuests ?? 0}
               </p>
               {eventMaxGuests !== null ? (
-                <p className="mt-2 text-xs text-earth/60">
+                <p className="mt-2 text-xs text-sumac-deep/60">
                   من أصل{" "}
-                  <span className="font-semibold text-olive">
+                  <span className="font-semibold text-sumac-deep">
                     {eventMaxGuests}
                   </span>{" "}
                   مقعداً للفعالية
                 </p>
               ) : null}
             </div>
-            <div className="rounded-2xl border border-earth/10 bg-cream/90 p-5 shadow-sm ring-1 ring-gold/10">
-              <p className="text-sm font-medium text-earth/70">حجوزات اليوم</p>
-              <p className="mt-2 font-heading text-3xl font-extrabold text-earth">
+            <div className="rounded-2xl border border-sumac/12 bg-cream/90 p-5 shadow-sm ring-1 ring-sumac/12">
+              <p className="text-sm font-medium text-sumac-deep/70">حجوزات اليوم</p>
+              <p className="mt-2 font-heading text-3xl font-extrabold text-sumac-deep">
                 {stats?.today ?? 0}
               </p>
             </div>
           </div>
 
-          <div className="mt-8 rounded-2xl border border-earth/12 bg-musakhan-atmosphere/90 p-5 shadow-sm ring-1 ring-sumac/15 sm:p-6">
-            <h2 className="font-heading text-lg font-extrabold text-olive sm:text-xl">
+          <div className="mt-8 rounded-2xl border border-sumac/12 bg-musakhan-atmosphere/90 p-5 shadow-sm ring-1 ring-sumac/15 sm:p-6">
+            <h2 className="font-heading text-lg font-extrabold text-sumac-deep sm:text-xl">
               سعة الفعالية (الحد الأقصى للضيوف)
             </h2>
-            <p className="mt-1 text-sm text-earth/70">
+            <p className="mt-1 text-sm text-sumac-deep/70">
               يحدّ هذا الرقم السعة المعروضة في نموذج الحجز ويُقارَن مع مجموع{" "}
-              <code className="rounded bg-earth/5 px-1 text-xs">
+              <code className="rounded bg-sumac/8 px-1 text-xs">
                 guest_count
               </code>{" "}
               في الحجوزات.
@@ -317,7 +317,7 @@ export default function AdminDashboardPage() {
             ) : null}
             <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end">
               <div className="flex flex-1 flex-col gap-2">
-                <Label htmlFor="event_max_guests" className="text-earth">
+                <Label htmlFor="event_max_guests" className="text-sumac-deep">
                   العدد الأقصى (شخصاً)
                 </Label>
                 <Input
@@ -326,7 +326,7 @@ export default function AdminDashboardPage() {
                   min={1}
                   max={10000}
                   dir="ltr"
-                  className="h-11 max-w-[12rem] rounded-xl border-earth/20 text-left font-mono text-base"
+                  className="h-11 max-w-[12rem] rounded-xl border-sumac/20 text-left font-mono text-base"
                   value={eventMaxInput}
                   onChange={(e) => {
                     setEventMaxInput(e.target.value);
@@ -356,33 +356,33 @@ export default function AdminDashboardPage() {
           </div>
 
           {rows.length === 0 ? (
-            <p className="mt-12 rounded-2xl border border-dashed border-earth/20 bg-musakhan-atmosphere/80 py-16 text-center text-earth/65">
+            <p className="mt-12 rounded-2xl border border-dashed border-sumac/20 bg-musakhan-atmosphere/80 py-16 text-center text-sumac-deep/65">
               لا توجد حجوزات بعد.
             </p>
           ) : (
-            <div className="mt-8 overflow-x-auto rounded-2xl border border-earth/10 bg-cream/50 shadow-sm ring-1 ring-earth/5">
+            <div className="mt-8 overflow-x-auto rounded-2xl border border-sumac/12 bg-cream/50 shadow-sm ring-1 ring-sumac/8">
               <table className="w-full min-w-[720px] border-collapse text-right text-sm">
                 <thead>
-                  <tr className="border-b border-earth/15 bg-musakhan-atmosphere/90">
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
+                  <tr className="border-b border-sumac/15 bg-musakhan-atmosphere/90">
+                    <th className="px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       الاسم
                     </th>
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
+                    <th className="px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       الهاتف
                     </th>
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
+                    <th className="px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       الضيوف
                     </th>
-                    <th className="min-w-[240px] px-3 py-3 font-semibold text-olive sm:px-4">
+                    <th className="min-w-[240px] px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       طلب القائمة (تفاصيل)
                     </th>
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
+                    <th className="px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       ملاحظة
                     </th>
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
+                    <th className="px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       التاريخ
                     </th>
-                    <th className="px-3 py-3 font-semibold text-olive sm:px-4">
+                    <th className="px-3 py-3 font-semibold text-sumac-deep sm:px-4">
                       إجراءات
                     </th>
                   </tr>
@@ -391,7 +391,7 @@ export default function AdminDashboardPage() {
                   {rows.map((r) => (
                     <tr
                       key={r.id}
-                      className="border-b border-earth/10 last:border-0"
+                      className="border-b border-sumac/10 last:border-0"
                     >
                       <td className="max-w-[140px] px-3 py-3 align-top font-medium sm:px-4">
                         {r.full_name}
@@ -405,10 +405,10 @@ export default function AdminDashboardPage() {
                       <td className="min-w-[220px] max-w-[26rem] px-3 py-3 align-top sm:px-4">
                         <MenuOrderCell raw={r.menu_order} />
                       </td>
-                      <td className="max-w-[180px] px-3 py-3 align-top text-earth/85 sm:px-4">
+                      <td className="max-w-[180px] px-3 py-3 align-top text-sumac-deep/85 sm:px-4">
                         {r.note ?? "—"}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-3 align-top text-earth/80 sm:px-4">
+                      <td className="whitespace-nowrap px-3 py-3 align-top text-sumac-deep/80 sm:px-4">
                         {new Date(r.created_at).toLocaleString("ar-EG", {
                           dateStyle: "short",
                           timeStyle: "short",

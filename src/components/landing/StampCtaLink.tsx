@@ -74,8 +74,7 @@ export function StampCtaLink({
       {caption && (
         <span
           className={cn(
-            "max-w-[11rem] rounded-md px-2.5 py-1 text-center text-[0.65rem] font-bold leading-tight shadow-sm ring-1 ring-black/5 sm:max-w-[13rem] sm:text-[0.7rem]",
-            "bg-white/95 text-sumac-deep sm:bg-white sm:text-sumac-deep",
+            "font-heading max-w-[11rem] rounded-md bg-white/80 px-2 py-1 text-center text-[0.7rem] font-semibold leading-tight text-sumac-deep/90 shadow-sm ring-1 ring-sumac/10 sm:max-w-[13rem] sm:px-2.5 sm:text-xs",
           )}
         >
           {caption}

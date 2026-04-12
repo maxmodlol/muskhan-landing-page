@@ -24,9 +24,9 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${tajawal.variable} scroll-smooth antialiased`}
+      className={`${tajawal.variable} scrollbar-musakhan scroll-smooth antialiased`}
     >
-      <body className="min-h-screen bg-cream text-earth">{children}</body>
+      <body className="min-h-screen bg-musakhan-atmosphere text-sumac-deep">{children}</body>
     </html>
   );
 }

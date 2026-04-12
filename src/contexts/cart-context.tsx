@@ -8,8 +8,6 @@ export type CartLine = {
   name: string;
   price: string;
   qty: number;
-  /** Optional — used for cart preview thumbnails */
-  image?: string;
 };
 
 type CartContextValue = {
@@ -34,7 +32,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         next[i] = {
           ...next[i],
           qty: next[i].qty + 1,
-          image: next[i].image ?? item.image,
         };
         return next;
       }
@@ -45,7 +42,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           name: item.name,
           price: item.price,
           qty: 1,
-          ...(item.image ? { image: item.image } : {}),
         },
       ];
     });

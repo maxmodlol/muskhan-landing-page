@@ -84,9 +84,9 @@ export function HeroSection() {
               <span className="h-px w-14 bg-gradient-to-r from-transparent via-heritage/70 to-sumac/40 sm:w-20" />
             </div>
 
-            <div className="rounded-full border border-heritage/45 bg-cream/92 px-5 py-2 text-xs font-bold tracking-wide text-earth shadow-[0_10px_32px_-14px_rgba(89,42,68,0.32)] ring-1 ring-sumac/20 backdrop-blur-md sm:px-7 sm:text-sm md:text-base">
+            <div className="surface-menu-callout rounded-full px-5 py-2 text-xs font-bold tracking-wide shadow-[0_10px_32px_-14px_rgba(89,42,68,0.32)] backdrop-blur-md sm:px-7 sm:text-sm md:text-base">
               <span className="text-sumac-deep">عين القدس</span>
-              <span className="mx-2 text-earth/35" aria-hidden>
+              <span className="mx-2 text-sumac-deep/35" aria-hidden>
                 ·
               </span>
               <span className="text-olive">مهرجان المسخن</span>
@@ -96,16 +96,16 @@ export function HeroSection() {
               مهرجان المسخن الفلسطيني
             </h1>
 
-            <p className="mt-3 max-w-xl text-pretty text-[clamp(0.95rem,2.4vw,1.2rem)] leading-relaxed text-earth/90 sm:mt-4 sm:max-w-2xl md:text-lg">
+            <p className="mt-3 max-w-xl text-pretty text-[clamp(0.95rem,2.4vw,1.2rem)] leading-relaxed text-sumac-deep/88 sm:mt-4 sm:max-w-2xl md:text-lg">
               حكاية خبزة من طابون عين القدس
             </p>
 
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:mt-6">
-              <span className="rounded-lg border border-earth/10 bg-musakhan-atmosphere/75 px-3 py-1 text-[0.7rem] font-semibold text-earth/75 backdrop-blur-sm sm:text-xs">
+              <span className="surface-menu-callout rounded-lg px-3 py-1 text-[0.7rem] font-semibold text-sumac-deep/85 backdrop-blur-sm sm:text-xs">
                 طابون · زيت زيتون · سماق
               </span>
               <span className="hidden h-4 w-px bg-gradient-to-b from-transparent via-heritage/50 to-transparent sm:block" />
-              <span className="rounded-lg border border-sumac/20 bg-sumac/10 px-3 py-1 text-[0.7rem] font-semibold text-sumac-deep sm:text-xs">
+              <span className="surface-menu-callout rounded-lg px-3 py-1 text-[0.7rem] font-semibold sm:text-xs">
                 أصالة المطبخ المقدسي
               </span>
             </div>
@@ -116,7 +116,7 @@ export function HeroSection() {
                 label="احجز تجربتك — الانتقال إلى نموذج الحجز وقائمة الطعام"
                 caption="احجز تجربتك"
               />
-              <p className="text-center text-[0.7rem] font-semibold text-white/95 [text-shadow:0_1px_3px_rgba(0,0,0,0.45)] sm:text-xs">
+              <p className="rounded-md bg-white/80 px-2 py-1 text-center text-[0.7rem] font-semibold text-sumac-deep/90 ring-1 ring-sumac/10 sm:text-xs">
                 اختر الأصناف ثم أكمِل الحجز
               </p>
             </div>
